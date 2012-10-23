@@ -29,6 +29,8 @@ public class Login{
 	public Login(String charName) throws NumberFormatException, IOException{
 		pName = charName;
 		if (Exists(charName) == true){
+			System.out.println("File Found");
+			System.out.println("Loading form File");
 			BufferedReader input = new BufferedReader(new FileReader(charName+".txt"));
 			health = Integer.parseInt(input.readLine());
 			chealth = Integer.parseInt(input.readLine());
@@ -44,6 +46,8 @@ public class Login{
 			input.close();
 		}
 		else{
+			System.out.println("No File Found");
+			System.out.println("Creating File");
 			File newChar = new File(charName+".txt");
 			newChar.createNewFile();
 			
@@ -63,18 +67,27 @@ public class Login{
 			turns = 0;
 			
 			//Printing Stats to Text File
-			news.write(health);
-			news.write(chealth);
-			news.write(mana);
-			news.write(cmana);
-			news.write(level);
-			news.write(xp);
-			news.write(xp);
-			news.write(str);
-			news.write(dex);
-			news.write(intel);
-			news.write(clv);
-			news.write(turns);
+			news.write(Integer.toString(health));
+			news.newLine();
+			news.write(Integer.toString(chealth));
+			news.newLine();
+			news.write(Integer.toString(mana));
+			news.newLine();
+			news.write(Integer.toString(cmana));
+			news.newLine();
+			news.write(Integer.toString(level));
+			news.newLine();
+			news.write(Integer.toString(xp));
+			news.newLine();
+			news.write(Integer.toString(str));
+			news.newLine();
+			news.write(Integer.toString(dex));
+			news.newLine();
+			news.write(Integer.toString(intel));
+			news.newLine();
+			news.write(Integer.toString(clv));
+			news.newLine();
+			news.write(Integer.toString(turns));
 			news.close();
 		}
 	}
