@@ -1,2 +1,2 @@
 ===Java RPG===
-Making a java RPG with Buster5200. 
+Making a java RPG with Buster52000! 
