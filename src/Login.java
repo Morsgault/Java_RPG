@@ -114,17 +114,27 @@ public class Login{
 		
 		BufferedWriter save = new BufferedWriter(new FileWriter(newSave));
 		
-		save.write(health);
-		save.write(chealth);
-		save.write(mana);
-		save.write(cmana);
-		save.write(level);
-		save.write(xp);
-		save.write(str);
-		save.write(dex);
-		save.write(intel);
-		save.write(clv);
-		save.write(turns);
+		save.write(Integer.toString(health));
+		save.newLine();
+		save.write(Integer.toString(chealth));
+		save.newLine();
+		save.write(Integer.toString(mana));
+		save.newLine();
+		save.write(Integer.toString(cmana));
+		save.newLine();
+		save.write(Integer.toString(level));
+		save.newLine();
+		save.write(Integer.toString(xp));
+		save.newLine();
+		save.write(Integer.toString(str));
+		save.newLine();
+		save.write(Integer.toString(dex));
+		save.newLine();
+		save.write(Integer.toString(intel));
+		save.newLine();
+		save.write(Integer.toString(clv));
+		save.newLine();
+		save.write(Integer.toString(turns));
 		save.close();
 	}
 	/**
