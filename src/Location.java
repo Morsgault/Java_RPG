@@ -1,3 +1,9 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
 
 
@@ -11,8 +17,9 @@ public class Location {
 	private int mapSize;
 	private int[][] world;
 	private boolean hasMap;
+	private String playerName;
 
-	public Location(int worldSize) {
+	public Location(int worldSize, String charName) throws IOException {
 		x = 3;
 		y = 0;
 		alive = true;
@@ -21,9 +28,11 @@ public class Location {
 		mapSize = worldSize;
 		world = new int[mapSize][mapSize];
 		hasMap = true;
+		playerName = charName;
 		genWorld();
 		showMap();
 	}
+
 	public void move(int direction) {
 		switch (direction) {
 
@@ -67,9 +76,15 @@ public class Location {
 	public void died() {
 		alive = false;
 	}
+	/*
+	 * This method gives the player the map is they happen to find it in the world
+	 */
 	public void findMap() {
 		hasMap = true;
 	}
+	/*
+	 * This method prints the map into the system output
+	 */
 	public void showMap() {
 		if(hasMap) {
 			for(int r = 0; r < mapSize; r++) {
@@ -81,12 +96,30 @@ public class Location {
 			}
 		}
 	}
-	//This method generates the world
-	private void genWorld() {
-		Random rand = new Random();
-		for(int i = 0; i < mapSize; i++) {
-			for(int j = 0; j < mapSize; j++) {
-				if(j > 0 && j < mapSize && i > 0 && i < mapSize) {
+	/*
+	 * This method generates the world or if the player has a save file reloads the world.
+	 */
+	private void genWorld() throws IOException {
+		if(Exists(playerName)) {
+			BufferedReader load = new BufferedReader(new FileReader(playerName+"Map.txt"));
+			String loadMap[] = new String[mapSize];
+			for(int p = 0; p < mapSize; p++) {
+				loadMap[p] = load.readLine();
+			}
+			for(int a = 0; a < mapSize; a++) {
+				for(int b = 0; b < mapSize; b++) {
+					world[a][b] = Integer.parseInt(loadMap[a].substring(b, b+1));
+				}
+			}
+			
+		} else {
+			File newMap = new File(playerName+"Map.txt");
+			newMap.createNewFile();
+
+			BufferedWriter map = new BufferedWriter(new FileWriter(newMap));
+			Random rand = new Random();
+			for(int i = 0; i < mapSize; i++) {
+				for(int j = 0; j < mapSize; j++) {
 					int randNum = rand.nextInt(100)+1;
 					int type = 0;
 					// Quicksand block
@@ -104,13 +137,30 @@ public class Location {
 					}
 					world[j][i] = type;
 				}
+				
 			}
+			for(int k = 0; k < mapSize; k++) {
+				world[k][0] = 5;
+				world[k][mapSize - 1] = 5;
+				world[0][k] = 5;
+				world[mapSize - 1][k] = 5;
+			}
+			
+			String str = "";
+			for(int a = 0; a < mapSize; a++) {
+				str = "";
+				for(int b = 0; b < mapSize; b++) {
+					str = str + Integer.toString(world[a][b]);
+				}
+				map.write(str);
+				map.newLine();
+			}
+			map.close();
+			
 		}
-		for(int k = 0; k < mapSize; k++) {
-			world[k][0] = 5;
-			world[k][mapSize - 1] = 5;
-			world[0][k] = 5;
-			world[mapSize - 1][k] = 5;
-		}
+	}
+	public boolean Exists(String charName){
+		File f = new File(charName+"Map.txt");
+		return f.exists()==true ? true : false; 
 	}
 }

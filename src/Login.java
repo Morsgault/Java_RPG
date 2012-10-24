@@ -1,43 +1,247 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class TextAdventure {
-
-	public static void main(String[] args) throws NumberFormatException, IOException {
-
-		Scanner input = new Scanner(System.in);
-		System.out.println("Please input you character's name.");
-		System.out.println("Note all of your data is saved using your character's name.");
-		String charName = input.next();
-		Login login = new Login(charName);
-		int mapSize = login.getMapSize();
-		Location location = new Location(mapSize);
-		LocationDescription description = new LocationDescription(); 
-		System.out.println("You find yourself on a deserted island. The last thing you remember is going to bed on in your cabin on your ship on route to Africa.");
-		while (location.isAlive()) {
-			System.out.println(description.getDescription(location.getX(), location.getY()));
-			String input2 = input.next();
-			if(input2.equals("North")) {
-				location.move(1);
-
-			} else if(input2.equals("South")) {
-				location.move(3);
-
-			} else if(input2.equals("East")) {
-				location.move(2);
-
-			} else if(input2.equals("West")) {
-				location.move(4);
-
-			} else  {
-				System.out.println("Impropper Input");
-			}
-			System.out.println("The Current location is "+location.getX()+", "+location.getY());
-
+public class Login{
+	private String pName; //The players name
+	private int health; //The players health
+	private int chealth; //The players current health
+	private int mana; // The players mana
+	private int cmana; //The players current mana
+	private int level; // The players level
+	private int xp; // The players expierience
+	private int str; //The players Strength rating
+	private int dex; //The players Dexterity rating
+	private int intel; //The players intelligence rating
+	private int clv; //The last time they visited the castle
+	private int turns; //The amount of turns the player has had.
+	private int mapSize; //The size of the map.
+	/**
+	 * Logins in a character
+	 * @param charName The character name
+	 * @throws IOException 
+	 * @throws NumberFormatException 
+	 */
+	public Login(String charName) throws NumberFormatException, IOException{
+		pName = charName;
+		if (Exists(charName) == true){
+			System.out.println("File Found");
+			System.out.println("Loading form File");
+			BufferedReader input = new BufferedReader(new FileReader(charName+".txt"));
+			health = Integer.parseInt(input.readLine());
+			chealth = Integer.parseInt(input.readLine());
+			mana = Integer.parseInt(input.readLine());
+			cmana = Integer.parseInt(input.readLine());
+			level = Integer.parseInt(input.readLine());
+			xp = Integer.parseInt(input.readLine());
+			str = Integer.parseInt(input.readLine());
+			dex = Integer.parseInt(input.readLine());
+			intel = Integer.parseInt(input.readLine());
+			clv = Integer.parseInt(input.readLine());
+			turns = Integer.parseInt(input.readLine());
+			mapSize = Integer.parseInt(input.readLine());
+			input.close();
 		}
-		if(location.isAlive() == false) {
-			System.out.println(description.getDescription(location.getX(), location.getY()));
-			System.out.println("You died");
+		else {
+			System.out.println("How Large would you like the map?");
+			System.out.println("The input, x, will create a map with the size (x,x).");
+			Scanner scanner = new Scanner(System.in);
+			mapSize = scanner.nextInt();
+			System.out.println("No File Found");
+			System.out.println("Creating File");
+			File newChar = new File(charName+".txt");
+			newChar.createNewFile();
+			
+			BufferedWriter news = new BufferedWriter(new FileWriter(newChar));
+			
+			//Initializing the Stats variables
+			health = 100;
+			chealth = 100;
+			mana = 100;
+			cmana = 100;
+			level = 1;
+			xp = 0;
+			str = 5;
+			dex = 5;
+			intel = 5;
+			clv = 0;
+			turns = 0;
+			
+			//Printing Stats to Text File
+			news.write(Integer.toString(health));
+			news.newLine();
+			news.write(Integer.toString(chealth));
+			news.newLine();
+			news.write(Integer.toString(mana));
+			news.newLine();
+			news.write(Integer.toString(cmana));
+			news.newLine();
+			news.write(Integer.toString(level));
+			news.newLine();
+			news.write(Integer.toString(xp));
+			news.newLine();
+			news.write(Integer.toString(str));
+			news.newLine();
+			news.write(Integer.toString(dex));
+			news.newLine();
+			news.write(Integer.toString(intel));
+			news.newLine();
+			news.write(Integer.toString(clv));
+			news.newLine();
+			news.write(Integer.toString(turns));
+			news.newLine();
+			news.write(Integer.toString(mapSize));
+			news.close();
 		}
 	}
+	/**
+	 * Checks if the textfile exists so I can throw the io exception
+	 * @param charName the name of the character to figure out if the file exists
+	 * @return
+	 */
+	public boolean Exists(String charName){
+		File f = new File(charName+".txt");
+		return f.exists()==true ? true : false; 
+
+	}
+
+	/**
+	 * Saves the current stats
+	 * @throws IOException 
+	 */
+	public void saveStats() throws IOException{
+		File oldSave = new File(pName+".txt");
+		oldSave.delete();
+		File newSave = new File(pName+".txt");
+		newSave.createNewFile();
+		
+		BufferedWriter save = new BufferedWriter(new FileWriter(newSave));
+		
+		save.write(Integer.toString(health));
+		save.newLine();
+		save.write(Integer.toString(chealth));
+		save.newLine();
+		save.write(Integer.toString(mana));
+		save.newLine();
+		save.write(Integer.toString(cmana));
+		save.newLine();
+		save.write(Integer.toString(level));
+		save.newLine();
+		save.write(Integer.toString(xp));
+		save.newLine();
+		save.write(Integer.toString(str));
+		save.newLine();
+		save.write(Integer.toString(dex));
+		save.newLine();
+		save.write(Integer.toString(intel));
+		save.newLine();
+		save.write(Integer.toString(clv));
+		save.newLine();
+		save.write(Integer.toString(turns));
+		save.newLine();
+		save.write(Integer.toString(mapSize));
+		save.close();
+	}
+	/**
+	 * Returns Health
+	 * @return Health - Maximum Health
+	 */
+	public int getHealth(){
+		return health;
+	}
+	
+	/**
+	 * Returns Current Health
+	 * @return Current Health - Current Health of Player
+	 */
+	public int getCHealth(){
+		return chealth;
+	}
+	
+	/**
+	 * Retrieves Mana Value
+	 * @return Mana- The Maximum amount of mana
+	 */
+	public int getMana(){
+		return mana;
+	}
+	
+	/**
+	 * Retrieves Current Mana Value
+	 * @return Current Mana - The Players Current Amount Of Mana
+	 */
+	public int getCMana(){
+		return cmana;
+	}
+	
+	/**
+	 * Retrieves the Players Level
+	 * @return Level- The Current Players Level
+	 */
+	public int getLevel(){
+		return level;
+	}
+	
+	/**
+	 * Retrieves Experience Points
+	 * @return Experience - How close you are to the next level
+	 */
+	public int getXp(){
+		return xp;
+	}
+	
+	/**
+	 * Retrieves Strength Rating
+	 * @return Strength - The Strength Level
+	 */
+	public int getStr(){
+		return str;
+	}
+	
+	/**
+	 * Retrieves Dexterity Rating
+	 * @return Dexterity - Retrieves Dexterity Rating
+	 */
+	public int getDex(){
+		return dex;
+	}
+	
+	/**
+	 * Retrieves Intelligence
+	 * @return Intel - The Intelligence rating
+	 */
+	public int getIntel(){
+		return intel;
+	}
+	
+	/**
+	 * Retrieves the last time the player visited the castle
+	 * @return Castle Last Visited- The last turn a player was at the castle
+	 */
+	public int getCLV(){
+		return clv;
+	}
+	
+	/**
+	 * Retrieves the amount of turns a player has went through
+	 * @return Turns - The amount of turns
+	 */
+	public int getTurns(){
+		return turns;
+	}
+	
+	/**
+	 * Retrieves the size of the map
+	 * @return mapSize - the size of the map
+	 */
+	public int getMapSize(){
+		return mapSize;
+	}
 }
+
