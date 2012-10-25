@@ -12,9 +12,9 @@ import java.util.Scanner;
 public class Login{
 	private String pName; //The players name
 	private int health; //The players health
-	private int chealth; //The players current health
+	private int cHealth; //The players current health
 	private int mana; // The players mana
-	private int cmana; //The players current mana
+	private int cMana; //The players current mana
 	private int level; // The players level
 	private int xp; // The players expierience
 	private int str; //The players Strength rating
@@ -38,9 +38,9 @@ public class Login{
 			System.out.println("Loading form File");
 			BufferedReader input = new BufferedReader(new FileReader(charName+".txt"));
 			health = Integer.parseInt(input.readLine());
-			chealth = Integer.parseInt(input.readLine());
+			cHealth = Integer.parseInt(input.readLine());
 			mana = Integer.parseInt(input.readLine());
-			cmana = Integer.parseInt(input.readLine());
+			cMana = Integer.parseInt(input.readLine());
 			level = Integer.parseInt(input.readLine());
 			xp = Integer.parseInt(input.readLine());
 			str = Integer.parseInt(input.readLine());
@@ -67,9 +67,9 @@ public class Login{
 			
 			//Initializing the Stats variables
 			health = 100;
-			chealth = 100;
+			cHealth = 100;
 			mana = 100;
-			cmana = 100;
+			cMana = 100;
 			level = 1;
 			xp = 0;
 			str = 5;
@@ -83,11 +83,11 @@ public class Login{
 			//Printing Stats to Text File
 			news.write(Integer.toString(health));
 			news.newLine();
-			news.write(Integer.toString(chealth));
+			news.write(Integer.toString(cHealth));
 			news.newLine();
 			news.write(Integer.toString(mana));
 			news.newLine();
-			news.write(Integer.toString(cmana));
+			news.write(Integer.toString(cMana));
 			news.newLine();
 			news.write(Integer.toString(level));
 			news.newLine();
@@ -136,11 +136,11 @@ public class Login{
 		
 		save.write(Integer.toString(health));
 		save.newLine();
-		save.write(Integer.toString(chealth));
+		save.write(Integer.toString(cHealth));
 		save.newLine();
 		save.write(Integer.toString(mana));
 		save.newLine();
-		save.write(Integer.toString(cmana));
+		save.write(Integer.toString(cMana));
 		save.newLine();
 		save.write(Integer.toString(level));
 		save.newLine();
@@ -176,7 +176,7 @@ public class Login{
 	 * @return Current Health - Current Health of Player
 	 */
 	public int getCHealth(){
-		return chealth;
+		return cHealth;
 	}
 	
 	/**
@@ -192,7 +192,7 @@ public class Login{
 	 * @return Current Mana - The Players Current Amount Of Mana
 	 */
 	public int getCMana(){
-		return cmana;
+		return cMana;
 	}
 	
 	/**
@@ -273,6 +273,88 @@ public class Login{
 	 */
 	public int getLocationY() {
 		return locationY;
+	}
+	
+	/**
+	 * Sets the current health
+	 * @param setHealth - the current health
+	 */
+	public void setCHealth(int setHealth) {
+		cHealth = setHealth;
+	}
+	
+	/**
+	 * Sets the current mana
+	 * @param setMana - the current mana
+	 */
+	public void setCMana(int setMana){
+		cMana = setMana;
+	}
+	
+	/**
+	 * Sets the current level
+	 * @param setLevel - the current level
+	 */
+	public void setLevel(int setLevel) {
+		level = setLevel;
+	}
+	
+	/**
+	 * sets the current xp
+	 * @param setXP - the current xp
+	 */
+	public void setXP(int setXP) {
+		xp = setXP;
+	}
+	
+	/**
+	 * sets the current strength
+	 * @param setStr - the current strength
+	 */
+	public void setStr(int setStr) {
+		str = setStr;
+	}
+	
+	/**
+	 * sets the current dexterity
+	 * @param setDex - the current dexterity
+	 */
+	public void setDex(int setDex) {
+		dex = setDex;
+	}
+	
+	/**
+	 * sets the current intel
+	 * @param setIntel - the current intel
+	 */
+	public void setIntel(int setIntel) {
+		intel = setIntel;
+	}
+	
+	/**
+	 * sets the last castle visit
+	 * @param cetClv - the last castle visit
+	 */
+	public void setClv(int setClv) {
+		clv = setClv;
+	}
+	
+	/**
+	 * sets the number of turns
+	 * @param setTurn - the number of turns
+	 */
+	public void setTurn(int setTurn) {
+		turns = setTurn;
+	}
+	
+	/**
+	 * sets the current location
+	 * @param x - the x coordinate of the location
+	 * @param y - the y coordinate of the location
+	 */
+	public void setLocation(int x, int y) {
+		locationX = x;
+		locationY = y;
 	}
 }
 
