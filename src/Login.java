@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+@SuppressWarnings("unused")
 public class Login{
 	private String pName; //The players name
 	private int health; //The players health
@@ -22,6 +23,8 @@ public class Login{
 	private int clv; //The last time they visited the castle
 	private int turns; //The amount of turns the player has had.
 	private int mapSize; //The size of the map.
+	private int locationX; //The x location of the player
+	private int locationY; //The y location of the player
 	/**
 	 * Logins in a character
 	 * @param charName The character name
@@ -46,6 +49,8 @@ public class Login{
 			clv = Integer.parseInt(input.readLine());
 			turns = Integer.parseInt(input.readLine());
 			mapSize = Integer.parseInt(input.readLine());
+			locationX = Integer.parseInt(input.readLine());
+			locationY = Integer.parseInt(input.readLine());
 			input.close();
 		}
 		else {
@@ -72,6 +77,8 @@ public class Login{
 			intel = 5;
 			clv = 0;
 			turns = 0;
+			locationX = mapSize/2;
+			locationY = 0;
 			
 			//Printing Stats to Text File
 			news.write(Integer.toString(health));
@@ -97,6 +104,10 @@ public class Login{
 			news.write(Integer.toString(turns));
 			news.newLine();
 			news.write(Integer.toString(mapSize));
+			news.newLine();
+			news.write(Integer.toString(locationX));
+			news.newLine();
+			news.write(Integer.toString(locationY));
 			news.close();
 		}
 	}
@@ -115,7 +126,7 @@ public class Login{
 	 * Saves the current stats
 	 * @throws IOException 
 	 */
-	public void saveStats() throws IOException{
+	public void saveStats(int x, int y) throws IOException{
 		File oldSave = new File(pName+".txt");
 		oldSave.delete();
 		File newSave = new File(pName+".txt");
@@ -146,6 +157,10 @@ public class Login{
 		save.write(Integer.toString(turns));
 		save.newLine();
 		save.write(Integer.toString(mapSize));
+		save.newLine();
+		save.write(Integer.toString(locationX));
+		save.newLine();
+		save.write(Integer.toString(locationY));
 		save.close();
 	}
 	/**
@@ -242,6 +257,22 @@ public class Login{
 	 */
 	public int getMapSize(){
 		return mapSize;
+	}
+	
+	/**
+	 * Retrieves the X start location
+	 * @return locationX - the X location
+	 */
+	public int getLocationX() {
+		return locationX;
+	}
+	
+	/**
+	 * Retrieves the Y start location
+	 * @return locationY - the Y location
+	 */
+	public int getLocationY() {
+		return locationY;
 	}
 }
 

@@ -12,7 +12,7 @@ public class TextAdventure {
 		System.out.println(charName);
 		Login login = new Login(charName);
 		int mapSize = login.getMapSize();
-		Location location = new Location(mapSize, charName);
+		Location location = new Location(mapSize, charName, login.getLocationX(), login.getLocationY());
 		LocationDescription description = new LocationDescription(); 
 		System.out.println("You find yourself on a deserted island. The last thing you remember is going to bed on in your cabin on your ship on route to Africa.");
 		while (location.isAlive()) {

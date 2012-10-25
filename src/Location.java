@@ -19,9 +19,9 @@ public class Location {
 	private boolean hasMap;
 	private String playerName;
 
-	public Location(int worldSize, String charName) throws IOException {
-		x = 3;
-		y = 0;
+	public Location(int worldSize, String charName, int locationX, int locationY) throws IOException {
+		x = locationX;
+		y = locationY;
 		alive = true;
 		maxX = 6;
 		maxY = 6;
