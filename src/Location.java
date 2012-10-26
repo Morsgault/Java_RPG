@@ -23,8 +23,8 @@ public class Location {
 		x = locationX;
 		y = locationY;
 		alive = true;
-		maxX = 6;
-		maxY = 6;
+		maxX = mapSize - 1;
+		maxY = mapSize - 1;
 		mapSize = worldSize;
 		world = new int[mapSize][mapSize];
 		hasMap = true;
