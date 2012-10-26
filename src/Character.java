@@ -19,11 +19,13 @@ public class Character {
 	private int locationY; //The y location of the player
 	private int weapon; //The weapon the player has
 
-	private String charName;
+        private final int LVL_XP[]; //xp needed to get to the next level
+       	private String charName;
 	Login login;
 
 	public Character(String name) throws NumberFormatException, IOException {
-		charName = name;
+                LVL_XP = {100,500,1200,2500,5000,9000,15000,20000,25000};
+             	charName = name;
 		login = new Login(charName);
 		getStats();
 	}
@@ -175,7 +177,7 @@ public class Character {
 	/**
 	 * Sets the current health
 	 * @param setHealth - the current health
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public void changeCHealth(int setHealth) throws IOException {
 		cHealth = cHealth + setHealth;
@@ -185,7 +187,7 @@ public class Character {
 	/**
 	 * Sets the current mana
 	 * @param setMana - the current mana
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public void changeMana(int setMana) throws IOException{
 		cMana = cMana + setMana;
@@ -195,7 +197,7 @@ public class Character {
 	/**
 	 * Sets the current level
 	 * @param setLevel - the current level
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	private void addLevel() throws IOException {
 		level++;
@@ -205,69 +207,16 @@ public class Character {
 	/**
 	 * sets the current xp
 	 * @param setXP - the current xp
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public void addXP(int addXP) throws IOException {
 		xp = xp + addXP;
-		switch(level) {
-
-		case 1:
-			if(xp >= 100) {
-				addLevel();
-				xp = 0;
-			}
-			break;
-		case 2:
-			if(xp >= 500) {
-				addLevel();
-				xp = 0;
-			}
-			break;
-		case 3:
-			if(xp >= 1200) {
-				addLevel();
-				xp = 0;
-			}
-			break;
-		case 4:
-			if(xp >= 2500) {
-				addLevel();
-				xp = 0;
-			}
-			break;
-		case 5:
-			if(xp >= 5000) {
-				addLevel();
-				xp = 0;
-			}
-			break;
-		case 6:
-			if(xp >= 9000) {
-				addLevel();
-				xp = 0;
-			}
-			break;
-		case 7:
-			if(xp >= 15000) {
-				addLevel();
-				xp = 0;
-			}
-			break;
-		case 8:
-			if(xp >= 20000) {
-				addLevel();
-				xp = 0;
-			}
-			break;
-		default:
-			if(xp >= 25000 && level > 8) {
-				addLevel();
-				xp = 0;
-			}
-			break;
-		}
+                if(xp >= LVL_XP[level]){
+                    xp-=LVL_XP[level];
+                    addLevel();
+                }
 		saveAll();
-	}
+        }
 
 	/**
 	 * resets xp upon death
@@ -279,7 +228,7 @@ public class Character {
 	/**
 	 * sets the current strength
 	 * @param setStr - the current strength
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public void setStr(int setStr) throws IOException {
 		str = setStr;
@@ -289,7 +238,7 @@ public class Character {
 	/**
 	 * sets the current dexterity
 	 * @param setDex - the current dexterity
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public void setDex(int setDex) throws IOException {
 		dex = setDex;
@@ -299,7 +248,7 @@ public class Character {
 	/**
 	 * sets the current intel
 	 * @param setIntel - the current intel
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public void setIntel(int setIntel) throws IOException {
 		intel = setIntel;
@@ -309,7 +258,7 @@ public class Character {
 	/**
 	 * sets the last castle visit
 	 * @param cetClv - the last castle visit
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public void setClv(int setClv) throws IOException {
 		clv = setClv;
@@ -319,7 +268,7 @@ public class Character {
 	/**
 	 * sets the number of turns
 	 * @param setTurn - the number of turns
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public void setTurn(int setTurn) throws IOException {
 		turns = setTurn;
@@ -330,7 +279,7 @@ public class Character {
 	 * sets the current location
 	 * @param x - the x coordinate of the location
 	 * @param y - the y coordinate of the location
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public void setLocation(int x, int y) throws IOException {
 		locationX = x;
