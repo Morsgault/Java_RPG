@@ -25,6 +25,7 @@ public class Login{
 	private int mapSize; //The size of the map.
 	private int locationX; //The x location of the player
 	private int locationY; //The y location of the player
+	private int weapon; //The weapon the player has
 	/**
 	 * Logins in a character
 	 * @param charName The character name
@@ -51,6 +52,7 @@ public class Login{
 			mapSize = Integer.parseInt(input.readLine());
 			locationX = Integer.parseInt(input.readLine());
 			locationY = Integer.parseInt(input.readLine());
+			weapon = Integer.parseInt(input.readLine());
 			input.close();
 		}
 		else {
@@ -79,6 +81,7 @@ public class Login{
 			turns = 0;
 			locationX = mapSize/2;
 			locationY = 0;
+			weapon = 0;
 			
 			//Printing Stats to Text File
 			news.write(Integer.toString(health));
@@ -108,6 +111,8 @@ public class Login{
 			news.write(Integer.toString(locationX));
 			news.newLine();
 			news.write(Integer.toString(locationY));
+			news.newLine();
+			news.write(Integer.toString(weapon));
 			news.close();
 		}
 	}
@@ -126,7 +131,22 @@ public class Login{
 	 * Saves the current stats
 	 * @throws IOException 
 	 */
-	public void saveStats(int x, int y) throws IOException{
+	public void saveStats(int health1, int cHealth1, int mana1, int cMana1, int level1, int xp1, int str1, int dex1, int intel1, int clv1, int turns1, int x, int y, int weapon1) throws IOException{
+		health = health1;
+		cHealth = cHealth1;
+		mana = mana1;
+		cMana = cMana1;
+		level = level1;
+		xp = xp1;
+		str = str1;
+		dex = dex1;
+		intel = intel1;
+		clv = clv1;
+		turns = turns1;
+		locationX = x;
+		locationY = y;
+		weapon = weapon1;
+		
 		File oldSave = new File(pName+".txt");
 		oldSave.delete();
 		File newSave = new File(pName+".txt");
@@ -161,6 +181,8 @@ public class Login{
 		save.write(Integer.toString(locationX));
 		save.newLine();
 		save.write(Integer.toString(locationY));
+		save.newLine();
+		save.write(Integer.toString(weapon));
 		save.close();
 	}
 	/**
@@ -276,85 +298,11 @@ public class Login{
 	}
 	
 	/**
-	 * Sets the current health
-	 * @param setHealth - the current health
+	 * Retrieves the weapon the player has
+	 * @return weapon - the weapon the player has
 	 */
-	public void setCHealth(int setHealth) {
-		cHealth = setHealth;
-	}
-	
-	/**
-	 * Sets the current mana
-	 * @param setMana - the current mana
-	 */
-	public void setCMana(int setMana){
-		cMana = setMana;
-	}
-	
-	/**
-	 * Sets the current level
-	 * @param setLevel - the current level
-	 */
-	public void setLevel(int setLevel) {
-		level = setLevel;
-	}
-	
-	/**
-	 * sets the current xp
-	 * @param setXP - the current xp
-	 */
-	public void setXP(int setXP) {
-		xp = setXP;
-	}
-	
-	/**
-	 * sets the current strength
-	 * @param setStr - the current strength
-	 */
-	public void setStr(int setStr) {
-		str = setStr;
-	}
-	
-	/**
-	 * sets the current dexterity
-	 * @param setDex - the current dexterity
-	 */
-	public void setDex(int setDex) {
-		dex = setDex;
-	}
-	
-	/**
-	 * sets the current intel
-	 * @param setIntel - the current intel
-	 */
-	public void setIntel(int setIntel) {
-		intel = setIntel;
-	}
-	
-	/**
-	 * sets the last castle visit
-	 * @param cetClv - the last castle visit
-	 */
-	public void setClv(int setClv) {
-		clv = setClv;
-	}
-	
-	/**
-	 * sets the number of turns
-	 * @param setTurn - the number of turns
-	 */
-	public void setTurn(int setTurn) {
-		turns = setTurn;
-	}
-	
-	/**
-	 * sets the current location
-	 * @param x - the x coordinate of the location
-	 * @param y - the y coordinate of the location
-	 */
-	public void setLocation(int x, int y) {
-		locationX = x;
-		locationY = y;
+	public int getWeapon() {
+		return weapon;
 	}
 }
 

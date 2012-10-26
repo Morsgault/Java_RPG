@@ -9,10 +9,9 @@ public class TextAdventure {
 		System.out.println("Please input you character's name.");
 		System.out.println("Note all of your data is saved using your character's name.");
 		String charName = input.next();
-		System.out.println(charName);
-		Login login = new Login(charName);
-		int mapSize = login.getMapSize();
-		Location location = new Location(mapSize, charName, login.getLocationX(), login.getLocationY());
+		Character character = new Character(charName);
+		int mapSize = character.getMapSize();
+		Location location = new Location(mapSize, charName, character.getLocationX(), character.getLocationY());
 		LocationDescription description = new LocationDescription(); 
 		System.out.println("You find yourself on a deserted island. The last thing you remember is going to bed on in your cabin on your ship on route to Africa.");
 		while (location.isAlive()) {
