@@ -29,8 +29,8 @@ public class Login{
 	/**
 	 * Logins in a character
 	 * @param charName The character name
-	 * @throws IOException 
-	 * @throws NumberFormatException 
+	 * @throws IOException
+	 * @throws NumberFormatException
 	 */
 	public Login(String charName) throws NumberFormatException, IOException{
 		pName = charName;
@@ -60,19 +60,19 @@ public class Login{
 			System.out.println("The input, x, will create a map with the size (x,x).");
 			Scanner scanner = new Scanner(System.in);
 			mapSize = scanner.nextInt();
-			System.out.println("No File Found");
+			System.out.println("No Character File Found");
 			System.out.println("Creating File");
 			File newChar = new File(charName+".txt");
 			newChar.createNewFile();
-			
+
 			BufferedWriter news = new BufferedWriter(new FileWriter(newChar));
-			
+
 			//Initializing the Stats variables
 			health = 100;
 			cHealth = 100;
 			mana = 100;
 			cMana = 100;
-			level = 1;
+			level = 0;
 			xp = 0;
 			str = 5;
 			dex = 5;
@@ -82,7 +82,7 @@ public class Login{
 			locationX = mapSize/2;
 			locationY = 0;
 			weapon = 0;
-			
+
 			//Printing Stats to Text File
 			news.write(Integer.toString(health));
 			news.newLine();
@@ -123,13 +123,13 @@ public class Login{
 	 */
 	public boolean Exists(String charName){
 		File f = new File(charName+".txt");
-		return f.exists()==true ? true : false; 
+		return f.exists()==true ? true : false;
 
 	}
 
 	/**
 	 * Saves the current stats
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public void saveStats(int health1, int cHealth1, int mana1, int cMana1, int level1, int xp1, int str1, int dex1, int intel1, int clv1, int turns1, int x, int y, int weapon1) throws IOException{
 		health = health1;
@@ -146,14 +146,14 @@ public class Login{
 		locationX = x;
 		locationY = y;
 		weapon = weapon1;
-		
+
 		File oldSave = new File(pName+".txt");
 		oldSave.delete();
 		File newSave = new File(pName+".txt");
 		newSave.createNewFile();
-		
+
 		BufferedWriter save = new BufferedWriter(new FileWriter(newSave));
-		
+
 		save.write(Integer.toString(health));
 		save.newLine();
 		save.write(Integer.toString(cHealth));
@@ -192,7 +192,7 @@ public class Login{
 	public int getHealth(){
 		return health;
 	}
-	
+
 	/**
 	 * Returns Current Health
 	 * @return Current Health - Current Health of Player
@@ -200,7 +200,7 @@ public class Login{
 	public int getCHealth(){
 		return cHealth;
 	}
-	
+
 	/**
 	 * Retrieves Mana Value
 	 * @return Mana- The Maximum amount of mana
@@ -208,7 +208,7 @@ public class Login{
 	public int getMana(){
 		return mana;
 	}
-	
+
 	/**
 	 * Retrieves Current Mana Value
 	 * @return Current Mana - The Players Current Amount Of Mana
@@ -216,7 +216,7 @@ public class Login{
 	public int getCMana(){
 		return cMana;
 	}
-	
+
 	/**
 	 * Retrieves the Players Level
 	 * @return Level- The Current Players Level
@@ -224,7 +224,7 @@ public class Login{
 	public int getLevel(){
 		return level;
 	}
-	
+
 	/**
 	 * Retrieves Experience Points
 	 * @return Experience - How close you are to the next level
@@ -232,7 +232,7 @@ public class Login{
 	public int getXp(){
 		return xp;
 	}
-	
+
 	/**
 	 * Retrieves Strength Rating
 	 * @return Strength - The Strength Level
@@ -240,7 +240,7 @@ public class Login{
 	public int getStr(){
 		return str;
 	}
-	
+
 	/**
 	 * Retrieves Dexterity Rating
 	 * @return Dexterity - Retrieves Dexterity Rating
@@ -248,7 +248,7 @@ public class Login{
 	public int getDex(){
 		return dex;
 	}
-	
+
 	/**
 	 * Retrieves Intelligence
 	 * @return Intel - The Intelligence rating
@@ -256,7 +256,7 @@ public class Login{
 	public int getIntel(){
 		return intel;
 	}
-	
+
 	/**
 	 * Retrieves the last time the player visited the castle
 	 * @return Castle Last Visited- The last turn a player was at the castle
@@ -264,7 +264,7 @@ public class Login{
 	public int getCLV(){
 		return clv;
 	}
-	
+
 	/**
 	 * Retrieves the amount of turns a player has went through
 	 * @return Turns - The amount of turns
@@ -272,7 +272,7 @@ public class Login{
 	public int getTurns(){
 		return turns;
 	}
-	
+
 	/**
 	 * Retrieves the size of the map
 	 * @return mapSize - the size of the map
@@ -280,7 +280,7 @@ public class Login{
 	public int getMapSize(){
 		return mapSize;
 	}
-	
+
 	/**
 	 * Retrieves the X start location
 	 * @return locationX - the X location
@@ -288,7 +288,7 @@ public class Login{
 	public int getLocationX() {
 		return locationX;
 	}
-	
+
 	/**
 	 * Retrieves the Y start location
 	 * @return locationY - the Y location
@@ -296,7 +296,7 @@ public class Login{
 	public int getLocationY() {
 		return locationY;
 	}
-	
+
 	/**
 	 * Retrieves the weapon the player has
 	 * @return weapon - the weapon the player has
