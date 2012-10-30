@@ -34,7 +34,7 @@ public class Login{
 	 */
 	public Login(String charName) throws NumberFormatException, IOException{
 		pName = charName;
-		if (Exists(charName) == true){
+		if (Exists(charName)){
 			System.out.println("File Found");
 			System.out.println("Loading form File");
 			BufferedReader input = new BufferedReader(new FileReader(charName+".txt"));
@@ -123,8 +123,7 @@ public class Login{
 	 */
 	public boolean Exists(String charName){
 		File f = new File(charName+".txt");
-		return f.exists()==true ? true : false;
-
+		return f.exists();
 	}
 
 	/**

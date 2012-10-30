@@ -31,9 +31,7 @@ public class Character {
 	}
 
 	public void findWeapon(int weaponType) {
-		if (weaponType >= weapon) {
-			weapon = weaponType;
-		}
+		weapon = Math.max(weaponType, weapon);
 	}
 
 	public void saveAll() throws IOException {

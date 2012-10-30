@@ -38,31 +38,23 @@ public class Location {
 
 		case 1:
 			y++;
-			if(y > maxY) {
-				alive = false;
-			}
+			alive = y <= maxY;
 			break;
 		case 2:
 			x++;
-			if(x > maxX) {
-				alive = false;
-			}
+			alive = x <= maxX;
 			break;
 		case 3:
 			y--;
-			if(y < 0) {
-				alive = false;
-			}
+			alive = y > 0;
 			break;
 		case 4:
 			x--;
-			if(x < 0) {
-				alive = false;
-			}
+			alive = x > 0;
 			break;
 		default:
 			break;
-		}			
+		}
 	}
 	public int getX() {
 		return x;
@@ -111,7 +103,7 @@ public class Location {
 					world[a][b] = Integer.parseInt(loadMap[a].substring(b, b+1));
 				}
 			}
-			
+
 		} else {
 			File newMap = new File(playerName+"Map.txt");
 			newMap.createNewFile();
@@ -137,7 +129,7 @@ public class Location {
 					}
 					world[j][i] = type;
 				}
-				
+
 			}
 			for(int k = 0; k < mapSize; k++) {
 				world[k][0] = 5;
@@ -145,7 +137,7 @@ public class Location {
 				world[0][k] = 5;
 				world[mapSize - 1][k] = 5;
 			}
-			
+
 			String str = "";
 			for(int a = 0; a < mapSize; a++) {
 				str = "";
@@ -156,11 +148,11 @@ public class Location {
 				map.newLine();
 			}
 			map.close();
-			
+
 		}
 	}
 	public boolean Exists(String charName){
 		File f = new File(charName+"Map.txt");
-		return f.exists()==true ? true : false; 
+		return f.exists();
 	}
 }
