@@ -45,7 +45,7 @@ public class AttackEngine {
         E_HEALTH = health;
         EC_HEALTH = health;
 
-        P.pln("You have encountered a level "+elevel+" enemy);
+        P.pln("You have encountered a level "+elevel+" enemy");
         while(!EC_HEALTH <= 0 && !PC_HEALTH <= 0 && !flee){
             engine = new Random();
             P.pln("Your Health: "+PC_HEALTH+"/"+ P_HEALTH);
