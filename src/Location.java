@@ -23,9 +23,9 @@ public class Location {
 		x = locationX;
 		y = locationY;
 		alive = true;
+		mapSize = worldSize;
 		maxX = mapSize - 1;
 		maxY = mapSize - 1;
-		mapSize = worldSize;
 		world = new int[mapSize][mapSize];
 		hasMap = true;
 		playerName = charName;
@@ -46,11 +46,11 @@ public class Location {
 			break;
 		case 3:
 			y--;
-			alive = y > 0;
+			alive = (y > 0);
 			break;
 		case 4:
 			x--;
-			alive = x > 0;
+			alive = (x > 0);
 			break;
 		default:
 			break;
@@ -88,6 +88,25 @@ public class Location {
 			}
 		}
 	}
+	
+	public void editMap(int editX, int editY, int worldType) throws IOException {
+		world[editX][editY] = worldType;
+		File edit = new File(playerName+"Map.txt");
+		edit.delete();
+		edit.createNewFile();
+		BufferedWriter editMap = new BufferedWriter(new FileWriter(edit));
+		String str = "";
+		for(int a = 0; a < mapSize; a++) {
+			str = "";
+			for(int b = 0; b < mapSize; b++) {
+				str = str + Integer.toString(world[a][b]);
+			}
+			editMap.write(str);
+			editMap.newLine();
+		}
+		editMap.close();
+	}
+	
 	/*
 	 * This method generates the world or if the player has a save file reloads the world.
 	 */
@@ -121,7 +140,10 @@ public class Location {
 					// pond block
 					if(randNum > 90 && randNum < 101) type = 3;
 					// field block
-					if(randNum > 60 && randNum < 91) type = 4;
+					if(randNum > 65 && randNum < 91) type = 4;
+					//town block
+					if(randNum > 60 && randNum < 66) type = 7;
+					//type 8 is a player built house
 					if(type == 0) {
 						System.out.println("Land Generator Error");
 						System.out.println("Program Terminated");
@@ -137,6 +159,12 @@ public class Location {
 				world[0][k] = 5;
 				world[mapSize - 1][k] = 5;
 			}
+			
+				int clx = rand.nextInt(mapSize);
+				int cly = rand.nextInt(mapSize);
+			
+			//set castle location
+			world[clx][cly] = 6;
 
 			String str = "";
 			for(int a = 0; a < mapSize; a++) {

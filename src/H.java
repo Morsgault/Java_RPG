@@ -17,9 +17,14 @@ public class H {
         System.out.print(x);
     }
 
-    public static int input(){
+    public static int inputInt(){
         Scanner input = new Scanner(System.in);
         return input.nextInt();
+    }
+    
+    public static String inputString() {
+    	Scanner input = new Scanner(System.in);
+    	return input.next();
     }
 
 

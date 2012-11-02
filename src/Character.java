@@ -56,6 +56,7 @@ public class Character {
 	}
 
 	public int getHealth(){
+                getStats();
 		return health;
 	}
 
@@ -64,6 +65,7 @@ public class Character {
 	 * @return Current Health - Current Health of Player
 	 */
 	public int getCHealth(){
+                getStats();
 		return cHealth;
 	}
 
@@ -72,6 +74,7 @@ public class Character {
 	 * @return Mana- The Maximum amount of mana
 	 */
 	public int getMana(){
+                getStats();
 		return mana;
 	}
 
@@ -80,6 +83,7 @@ public class Character {
 	 * @return Current Mana - The Players Current Amount Of Mana
 	 */
 	public int getCMana(){
+                getStats();
 		return cMana;
 	}
 
@@ -88,6 +92,7 @@ public class Character {
 	 * @return Level- The Current Players Level
 	 */
 	public int getLevel(){
+                getStats();
 		return level;
 	}
 
@@ -96,6 +101,7 @@ public class Character {
 	 * @return Experience - How close you are to the next level
 	 */
 	public int getXp(){
+                getStats();
 		return xp;
 	}
 
@@ -104,6 +110,7 @@ public class Character {
 	 * @return Strength - The Strength Level
 	 */
 	public int getStr(){
+                getStats();
 		return str;
 	}
 
@@ -112,6 +119,7 @@ public class Character {
 	 * @return Dexterity - Retrieves Dexterity Rating
 	 */
 	public int getDex(){
+                getStats();
 		return dex;
 	}
 
@@ -120,6 +128,7 @@ public class Character {
 	 * @return Intel - The Intelligence rating
 	 */
 	public int getIntel(){
+                getStats();
 		return intel;
 	}
 
@@ -128,6 +137,7 @@ public class Character {
 	 * @return Castle Last Visited- The last turn a player was at the castle
 	 */
 	public int getCLV(){
+                getStats();
 		return clv;
 	}
 
@@ -136,6 +146,7 @@ public class Character {
 	 * @return Turns - The amount of turns
 	 */
 	public int getTurns(){
+                getStats();
 		return turns;
 	}
 
@@ -144,6 +155,7 @@ public class Character {
 	 * @return mapSize - the size of the map
 	 */
 	public int getMapSize(){
+                getStats();
 		return mapSize;
 	}
 
@@ -152,6 +164,7 @@ public class Character {
 	 * @return locationX - the X location
 	 */
 	public int getLocationX() {
+                getStats();
 		return locationX;
 	}
 
@@ -160,6 +173,7 @@ public class Character {
 	 * @return locationY - the Y location
 	 */
 	public int getLocationY() {
+                getStats();
 		return locationY;
 	}
 
@@ -168,6 +182,7 @@ public class Character {
 	 * @return weapon - the weapon the player has
 	 */
 	public int getWeapon() {
+                getStats();
 		return weapon;
 	}
 
@@ -279,8 +294,14 @@ public class Character {
 	 * @throws IOException
 	 */
 	public void setLocation(int x, int y) throws IOException {
-		locationX = x;
+                locationX = x;
 		locationY = y;
 		saveAll();
 	}
+
+        public void update(){
+            getStats();
+        }
+
+
 }

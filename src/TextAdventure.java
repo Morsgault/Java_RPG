@@ -12,21 +12,26 @@ public class TextAdventure {
 		Character character = new Character(charName);
 		int mapSize = character.getMapSize();
 		Location location = new Location(mapSize, charName, character.getLocationX(), character.getLocationY());
-		Event description = new Event(); 
+		Event event = new Event(); 
 		System.out.println("You find yourself on a deserted island. The last thing you remember is going to bed on in your cabin on your ship on route to Africa.");
 		while (location.isAlive()) {
-			System.out.println(description.getDescription(location.getX(), location.getY()));
-			String input2 = input.next();
-			if(input2.equals("North")) {
+			event.getDescription(location.getX(), location.getY());
+			System.out.println("The Current location is "+location.getX()+", "+location.getY());
+			String input2 = H.inputString();
+			H.pln(input2);
+			input2 = input2.toLowerCase();
+			H.pln(input2);
+			if(input2.equals("north")) {
 				location.move(1);
+				H.pln("1");
 
-			} else if(input2.equals("South")) {
+			} else if(input2.equals("south")) {
 				location.move(3);
 
-			} else if(input2.equals("East")) {
+			} else if(input2.equals("east")) {
 				location.move(2);
 
-			} else if(input2.equals("West")) {
+			} else if(input2.equals("west")) {
 				location.move(4);
 
 			} else  {
@@ -36,7 +41,7 @@ public class TextAdventure {
 
 		}
 		if(location.isAlive() == false) {
-			System.out.println(description.getDescription(location.getX(), location.getY()));
+			event.getDescription(location.getX(), location.getY());
 			System.out.println("You died");
 		}
 	}
