@@ -19,12 +19,11 @@ public class Character {
 	private int locationY; //The y location of the player
 	private int weapon; //The weapon the player has
 
-        private final int LVL_XP[]; //xp needed to get to the next level
+        private final int LVL_XP[] = {100,500,1200,2500,5000,9000,15000,20000,25000}; //xp needed to get to the next level
        	private String charName;
 	Login login;
 
 	public Character(String name) throws NumberFormatException, IOException {
-                LVL_XP = {100,500,1200,2500,5000,9000,15000,20000,25000};
              	charName = name;
 		login = new Login(charName);
 		getStats();
@@ -177,8 +176,8 @@ public class Character {
 	 * @param setHealth - the current health
 	 * @throws IOException
 	 */
-	public void changeCHealth(int setHealth) throws IOException {
-		cHealth = cHealth + setHealth;
+	public void setCHealth(int setHealth) throws IOException {
+		cHealth = setHealth;
 		saveAll();
 	}
 

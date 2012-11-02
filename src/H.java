@@ -17,9 +17,9 @@ public class H {
         System.out.print(x);
     }
 
-    public int input(){
+    public static int input(){
         Scanner input = new Scanner(System.in);
-        input.nextInt();
+        return input.nextInt();
     }
 
 
