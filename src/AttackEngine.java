@@ -45,50 +45,50 @@ public class AttackEngine {
         E_HEALTH = health;
         EC_HEALTH = health;
 
-        P.pln("You have encountered a level "+elevel+" enemy");
+        H.pln("You have encountered a level "+elevel+" enemy");
         while(!EC_HEALTH <= 0 && !PC_HEALTH <= 0 && !flee){
             engine = new Random();
-            P.pln("Your Health: "+PC_HEALTH+"/"+ P_HEALTH);
-            P.pln("Enemy's Health : "+EC_HEALTH+"/"+ E_HEALTH);
-            P.pln("What do you want to do?");
-            P.pln("(1)Attack, (2)Defend, (3)Flee");
+            H.pln("Your Health: "+PC_HEALTH+"/"+ P_HEALTH);
+            H.pln("Enemy's Health : "+EC_HEALTH+"/"+ E_HEALTH);
+            H.pln("What do you want to do?");
+            H.pln("(1)Attack, (2)Defend, (3)Flee");
             choice = P.input();
 
             switch(choice){
                 case 1:
                     if(engine.nextInt(99)+1 <= 95){
                         damage = engine.nextInt(MAX_DAMAGE[plevel]);
-                        P.pln("Enemy lost "+damage+" health!");
+                        H.pln("Enemy lost "+damage+" health!");
                         EC_HEALTH-=damage;
                     }
                     else{
                         if(plevel<=8){
                           damage = engine.nextInt(MAX_DAMAGE[plevel+2]);
-                          P.pln("Critical Hit!");
-                          P.pln("Enemy lost "+damage+" health!");
+                          H.pln("Critical Hit!");
+                          H.pln("Enemy lost "+damage+" health!");
                         }
                         else{
                             if(plevel == 9){
                                 damage = engine.nextInt(MAX_DAMAGE[plevel+1]);
-                                P.pln("Critical Hit!");
-                                P.pln("Enemy lost "+damage+" health!");
+                                H.pln("Critical Hit!");
+                                H.pln("Enemy lost "+damage+" health!");
                             }
                             if(plevel == 10){
                                 damage = EC_HEALTH;
-                                P.pln("You destroyed the Enemy with one blow!!!");
+                                H.pln("You destroyed the Enemy with one blow!!!");
                             }
                         }
                     }
                     damage = engine.nextInt(MAX_DAMAGE[elevel])+1;
-                    P.pln("You lost "+damage+" health");
+                    H.pln("You lost "+damage+" health");
                     PC_HEALTH-=damage;
                     player.setCHealth(PC_HEALTH);
                     break;
                     case 2:
-                    P.pln("You have blocked the enemy attack!");
+                    H.pln("You have blocked the enemy attack!");
                     break;
                 case 3:
-                    P.pln("You have fled");
+                    H.pln("You have fled");
                     flee = true;
                      break;
         }
@@ -96,11 +96,11 @@ public class AttackEngine {
     }
     if(EC_HEALTH <=0 && PC_HEALTH > 0){
         player.addXP(((elevel)*100)-EC_HEALTH);
-        P.pln("You gained "+String.valueOf((((elevel)*100)-EC_HEALTH))+" XP!");
+        H.pln("You gained "+String.valueOf((((elevel)*100)-EC_HEALTH))+" XP!");
     }
    if(flee){
         player.addXP((EC_HEALTH)*(-1));
-        P.pln("You lost "+EC_HEALTH+" XP!");
+        H.pln("You lost "+EC_HEALTH+" XP!");
    }
 }
 }
