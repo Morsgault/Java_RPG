@@ -46,7 +46,6 @@ public class AttackEngine {
         EC_HEALTH = health;
 
         P.pln("You have encountered a level "+elevel+" enemy);
-                case 2:
         while(!EC_HEALTH <= 0 && !PC_HEALTH <= 0 && !flee){
             engine = new Random();
             P.pln("Your Health: "+PC_HEALTH+"/"+ P_HEALTH);
@@ -85,6 +84,7 @@ public class AttackEngine {
                     PC_HEALTH-=damage;
                     player.setCHealth(PC_HEALTH);
                     break;
+                    case 2:
                     P.pln("You have blocked the enemy attack!");
                     break;
                 case 3:
