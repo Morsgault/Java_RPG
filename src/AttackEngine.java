@@ -53,7 +53,7 @@ public class AttackEngine {
 			H.pln("Enemy's Health : "+EC_HEALTH+"/"+ E_HEALTH);
 			H.pln("What do you want to do?");
 			H.pln("(1)Attack, (2)Defend, (3)Flee");
-			choice = H.input();
+			choice = H.inputInt();
 
 			switch(choice){
 			case 1:

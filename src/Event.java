@@ -1,13 +1,10 @@
 
 public class Event {
-
-	private String description;
 	
-	public String getDescription(int x, int y) {
+	public void getDescription(int x, int y) {
 		
-		description = "You are in a forest.";
+		H.pln("You are in a forest");
 		
-		return description;
 	}
 	
 }
