@@ -12,7 +12,7 @@ public class TextAdventure {
 		Character character = new Character(charName);
 		int mapSize = character.getMapSize();
 		Location location = new Location(mapSize, charName, character.getLocationX(), character.getLocationY());
-		LocationDescription description = new LocationDescription();
+		Event description = new Event(); 
 		System.out.println("You find yourself on a deserted island. The last thing you remember is going to bed on in your cabin on your ship on route to Africa.");
 		while (location.isAlive()) {
 			System.out.println(description.getDescription(location.getX(), location.getY()));
@@ -35,7 +35,7 @@ public class TextAdventure {
 			System.out.println("The Current location is "+location.getX()+", "+location.getY());
 
 		}
-		if(!location.isAlive()) {
+		if(location.isAlive() == false) {
 			System.out.println(description.getDescription(location.getX(), location.getY()));
 			System.out.println("You died");
 		}
