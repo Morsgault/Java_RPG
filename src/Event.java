@@ -1,3 +1,6 @@
+import java.io.IOException;
+import java.util.Random;
+
 public class Event {
 
     private Random e_calc;
@@ -5,20 +8,26 @@ public class Event {
     private AttackEngine encounter;
     private int event; // Type of event
     private Character player;
+    private String playerName;
 
-    public void EventCalc(int x, String charName){
-        encounter = new AttackEngine(charName);
+    public Event(String charName) throws NumberFormatException, IOException {
+    	encounter = new AttackEngine(charName);
+    	player = new Character(charName);
+    	playerName = charName;
+    }
+    
+    public void eventCalc(int x) throws IOException{
         switch(x){
             case 1:
                 H.pln("You are stuck in quicksand!");
                 H.pln("You lost 30 health!");
-                player.setCHealth(player.getHealth-30);
+                player.setCHealth(player.getHealth() - 30);
                 break;
             case 2:
                 H.pln("You are in a Forest!");
                 e_calc = new Random();
                 event = e_calc.nextInt(99)+1;
-                if(event>0 && event<60){ //Finiding an enemy (60% chance)
+                if(event>0 && event<60){ //Finding an enemy (60% chance)
                     encounter.Battle();
                 }
                 if(event>=61 && event<=90){ //30% chance of nothing
@@ -34,7 +43,7 @@ public class Event {
                 }
                 if(event>=96 && event<=100){
                     //Need to make changes to character class and
-                    //allow  hasmap to be seen in
+                    //allow  hasMap to be seen in
                     //this class
                 }
                 break;
@@ -42,15 +51,15 @@ public class Event {
                 H.pln("You have found a pond.");
                 H.pln("All seems quiet and peaceful.");
                 H.pln("You have regained 30 Health!");
-                player.setCHealth(player.getCHealth+30);
+                player.setCHealth(player.getCHealth()+30);
                 break;
             case 4:
                 H.pln("You are on a field");
                 H.pln("There is a person on the Horizon.");
                 H.pln("Would you like to : (1)Attack or (2)Ignore and Keep Moving?");
-                choice =  H.input();
+                choice =  H.inputInt();
                 if(choice<= 1 || choice >2){
-                    ecounter.Battle();
+                    encounter.Battle();
                 }
                 else{
                     H.pln("You and the person pass by without");

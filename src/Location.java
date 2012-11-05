@@ -46,11 +46,11 @@ public class Location {
 			break;
 		case 3:
 			y--;
-			alive = (y > 0);
+			alive = (y >= 0);
 			break;
 		case 4:
 			x--;
-			alive = (x > 0);
+			alive = (x >= 0);
 			break;
 		default:
 			break;
@@ -105,6 +105,10 @@ public class Location {
 			editMap.newLine();
 		}
 		editMap.close();
+	}
+	
+	public int getWorld() {
+		return world[x][y];
 	}
 	
 	/*

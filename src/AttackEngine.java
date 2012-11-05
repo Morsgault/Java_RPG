@@ -26,8 +26,8 @@ public class AttackEngine {
 	private Random engine;
 
 	public AttackEngine(String charName) throws NumberFormatException, IOException{
-		Character player = new Character(charName);
-		Random elgen = new Random();
+		player = new Character(charName);
+		elgen = new Random();
 	}
 	public void Battle() throws IOException{
 		int health;
