@@ -1,4 +1,3 @@
-
 public class Event {
 
     private Random e_calc;
@@ -27,7 +26,7 @@ public class Event {
                 }
                 if(event>=91 && event<=95){ //5% chance of finding extra XP
                     H.pln("You found a book");
-                    H.pln("It looks old an is hard to read.");
+                    H.pln("It looks old and is hard to read.");
                     H.pln("However after figuring out the symbols");
                     H.pln("You have learned valuable skills");
                     H.pln("You gained 500 XP!");
@@ -41,7 +40,7 @@ public class Event {
                 break;
             case 3:
                 H.pln("You have found a pond.");
-                H.pln("All seems quiet ad nd peaceful.");
+                H.pln("All seems quiet and peaceful.");
                 H.pln("You have regained 30 Health!");
                 player.setCHealth(player.getCHealth+30);
                 break;
