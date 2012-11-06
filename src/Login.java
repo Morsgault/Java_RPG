@@ -38,6 +38,11 @@ public class Login{
 			System.out.println("How Large would you like the map?");
 			System.out.println("The input, x, will create a map with the size (x,x).");
 			mapSize = H.inputInt();
+			if(mapSize < 7) {
+				mapSize = 7;
+				H.pln("The minimum map size is 7");
+				H.pln("Your mapSize has been changed to 7");
+			}
 			System.out.println("No Character File Found");
 			System.out.println("Creating File");
 			File newChar = new File(charName+".txt");
