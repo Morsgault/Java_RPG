@@ -305,7 +305,8 @@ public class Character {
 		saveAll();
 	}
 
-	public void update(){
+	public void update() throws NumberFormatException, IOException{
+		login.update();
 		getStats();
 	}
 

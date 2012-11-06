@@ -108,7 +108,7 @@ public class Location {
 		editMap.close();
 	}
 	
-	public int getWorld() {
+	public int getCell() {
 		return world[x][y];
 	}
 	
@@ -127,6 +127,7 @@ public class Location {
 					world[a][b] = Integer.parseInt(loadMap[a].substring(b, b+1));
 				}
 			}
+			load.close();
 
 		} else {
 			File newMap = new File(playerName+"Map.txt");

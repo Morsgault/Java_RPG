@@ -1,14 +1,10 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 
-@SuppressWarnings("unused")
 public class Login{
 	private String pName; //The players name
 	private int health; //The players health
@@ -36,32 +32,12 @@ public class Login{
 	public Login(String charName) throws NumberFormatException, IOException{
 		pName = charName;
 		if (Exists(charName)){
-//			System.out.println("File Found");
-//			System.out.println("Loading form File");
-			BufferedReader input = new BufferedReader(new FileReader(charName+".txt"));
-			health = Integer.parseInt(input.readLine());
-			cHealth = Integer.parseInt(input.readLine());
-			mana = Integer.parseInt(input.readLine());
-			cMana = Integer.parseInt(input.readLine());
-			level = Integer.parseInt(input.readLine());
-			xp = Integer.parseInt(input.readLine());
-			str = Integer.parseInt(input.readLine());
-			dex = Integer.parseInt(input.readLine());
-			intel = Integer.parseInt(input.readLine());
-			clv = Integer.parseInt(input.readLine());
-			turns = Integer.parseInt(input.readLine());
-			mapSize = Integer.parseInt(input.readLine());
-			locationX = Integer.parseInt(input.readLine());
-			locationY = Integer.parseInt(input.readLine());
-			weapon = Integer.parseInt(input.readLine());
-			map = Boolean.parseBoolean(input.readLine());
-			input.close();
+			update();
 		}
 		else {
 			System.out.println("How Large would you like the map?");
 			System.out.println("The input, x, will create a map with the size (x,x).");
-			Scanner scanner = new Scanner(System.in);
-			mapSize = scanner.nextInt();
+			mapSize = H.inputInt();
 			System.out.println("No Character File Found");
 			System.out.println("Creating File");
 			File newChar = new File(charName+".txt");
@@ -193,6 +169,27 @@ public class Login{
 		save.close();
 	}
 	
+	public void update() throws NumberFormatException, IOException {
+		BufferedReader input = new BufferedReader(new FileReader(pName+".txt"));
+		health = Integer.parseInt(input.readLine());
+		cHealth = Integer.parseInt(input.readLine());
+		mana = Integer.parseInt(input.readLine());
+		cMana = Integer.parseInt(input.readLine());
+		level = Integer.parseInt(input.readLine());
+		xp = Integer.parseInt(input.readLine());
+		str = Integer.parseInt(input.readLine());
+		dex = Integer.parseInt(input.readLine());
+		intel = Integer.parseInt(input.readLine());
+		clv = Integer.parseInt(input.readLine());
+		turns = Integer.parseInt(input.readLine());
+		mapSize = Integer.parseInt(input.readLine());
+		locationX = Integer.parseInt(input.readLine());
+		locationY = Integer.parseInt(input.readLine());
+		weapon = Integer.parseInt(input.readLine());
+		map = Boolean.parseBoolean(input.readLine());
+		input.close();
+	}
+	
 	/**
 	 * returns whether the player has a map
 	 * @return map - If player has a map
@@ -320,5 +317,6 @@ public class Login{
 	public int getWeapon() {
 		return weapon;
 	}
+	
 }
 

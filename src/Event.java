@@ -9,15 +9,21 @@ public class Event {
 	private int event; // Type of event
 	private Character player;
 	private String playerName;
+	private Location location;
+	private int x;
+	private int y;
 
 	public Event(String charName) throws NumberFormatException, IOException {
 		encounter = new AttackEngine(charName);
 		player = new Character(charName);
 		playerName = charName;
+		x = player.getLocationX();
+		y = player.getLocationY();
+		location = new Location(player.getMapSize(), charName, x, y);
 	}
 
-	public void eventCalc(int x) throws IOException{
-		switch(x){
+	public void eventCalc() throws IOException {
+		switch(location.getCell()){
 		case 1:
 			H.pln("You are stuck in quicksand!");
 			H.pln("You lost 30 health!");
@@ -29,6 +35,7 @@ public class Event {
 			event = e_calc.nextInt(99)+1;
 			if(event>0 && event<60){ //Finding an enemy (60% chance)
 				encounter.Battle();
+				player.update();
 			}
 			if(event>=61 && event<=90){ //30% chance of nothing
 				H.pln("Nothing here seems out of the ordinary.");
@@ -59,6 +66,7 @@ public class Event {
 			choice =  H.inputInt();
 			if(choice<= 1 || choice >2){
 				encounter.Battle();
+				player.update();
 			}
 			else{
 				H.pln("You and the person pass by without");
@@ -69,7 +77,20 @@ public class Event {
 
 	}
 	
+	public void move(int direction) throws IOException {
+		location.move(direction);
+		x = location.getX();
+		y = location.getY();
+		player.setLocation(x, y);
+	}
+	
+	public void showMap() {
+		location.showMap();
+	}
+	
 	public void save() throws IOException {
+		player.update();
+		player.setLocation(x, y);
 		player.saveAll();
 	}
 

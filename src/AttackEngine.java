@@ -103,5 +103,6 @@ public class AttackEngine {
 			player.addXP((EC_HEALTH)*(-1));
 			H.pln("You lost "+EC_HEALTH+" XP!");
 		}
+		player.saveAll();
 	}
 }
