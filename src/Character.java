@@ -19,12 +19,13 @@ public class Character {
 	private int locationY; //The y location of the player
 	private int weapon; //The weapon the player has
 
-        private final int LVL_XP[] = {100,500,1200,2500,5000,9000,15000,20000,25000}; //xp needed to get to the next level
-       	private String charName;
+	private final int LVL_XP[] = {100,500,1200,2500,5000,9000,15000,20000,25000}; //xp needed to get to the next level
+	private String charName;
+	private boolean hasMap;
 	Login login;
 
 	public Character(String name) throws NumberFormatException, IOException {
-             	charName = name;
+		charName = name;
 		login = new Login(charName);
 		getStats();
 	}
@@ -34,7 +35,7 @@ public class Character {
 	}
 
 	public void saveAll() throws IOException {
-		login.saveStats(health, cHealth, mana, cMana, level, xp, str, dex, intel, clv, turns, locationX, locationY, weapon);
+		login.saveStats(health, cHealth, mana, cMana, level, xp, str, dex, intel, clv, turns, locationX, locationY, weapon, hasMap);
 	}
 
 	private void getStats() {
@@ -53,10 +54,15 @@ public class Character {
 		locationX = login.getLocationX();
 		locationY = login.getLocationY();
 		weapon = login.getWeapon();
+		hasMap = login.getMap();
+	}
+	
+	public void findMap() {
+		hasMap = true;
 	}
 
 	public int getHealth(){
-                getStats();
+		getStats();
 		return health;
 	}
 
@@ -65,7 +71,7 @@ public class Character {
 	 * @return Current Health - Current Health of Player
 	 */
 	public int getCHealth(){
-                getStats();
+		getStats();
 		return cHealth;
 	}
 
@@ -74,7 +80,7 @@ public class Character {
 	 * @return Mana- The Maximum amount of mana
 	 */
 	public int getMana(){
-                getStats();
+		getStats();
 		return mana;
 	}
 
@@ -83,7 +89,7 @@ public class Character {
 	 * @return Current Mana - The Players Current Amount Of Mana
 	 */
 	public int getCMana(){
-                getStats();
+		getStats();
 		return cMana;
 	}
 
@@ -92,7 +98,7 @@ public class Character {
 	 * @return Level- The Current Players Level
 	 */
 	public int getLevel(){
-                getStats();
+		getStats();
 		return level;
 	}
 
@@ -101,7 +107,7 @@ public class Character {
 	 * @return Experience - How close you are to the next level
 	 */
 	public int getXp(){
-                getStats();
+		getStats();
 		return xp;
 	}
 
@@ -110,7 +116,7 @@ public class Character {
 	 * @return Strength - The Strength Level
 	 */
 	public int getStr(){
-                getStats();
+		getStats();
 		return str;
 	}
 
@@ -119,7 +125,7 @@ public class Character {
 	 * @return Dexterity - Retrieves Dexterity Rating
 	 */
 	public int getDex(){
-                getStats();
+		getStats();
 		return dex;
 	}
 
@@ -128,7 +134,7 @@ public class Character {
 	 * @return Intel - The Intelligence rating
 	 */
 	public int getIntel(){
-                getStats();
+		getStats();
 		return intel;
 	}
 
@@ -137,7 +143,7 @@ public class Character {
 	 * @return Castle Last Visited- The last turn a player was at the castle
 	 */
 	public int getCLV(){
-                getStats();
+		getStats();
 		return clv;
 	}
 
@@ -146,7 +152,7 @@ public class Character {
 	 * @return Turns - The amount of turns
 	 */
 	public int getTurns(){
-                getStats();
+		getStats();
 		return turns;
 	}
 
@@ -155,7 +161,7 @@ public class Character {
 	 * @return mapSize - the size of the map
 	 */
 	public int getMapSize(){
-                getStats();
+		getStats();
 		return mapSize;
 	}
 
@@ -164,7 +170,7 @@ public class Character {
 	 * @return locationX - the X location
 	 */
 	public int getLocationX() {
-                getStats();
+		getStats();
 		return locationX;
 	}
 
@@ -173,7 +179,7 @@ public class Character {
 	 * @return locationY - the Y location
 	 */
 	public int getLocationY() {
-                getStats();
+		getStats();
 		return locationY;
 	}
 
@@ -182,7 +188,7 @@ public class Character {
 	 * @return weapon - the weapon the player has
 	 */
 	public int getWeapon() {
-                getStats();
+		getStats();
 		return weapon;
 	}
 
@@ -223,12 +229,12 @@ public class Character {
 	 */
 	public void addXP(int addXP) throws IOException {
 		xp = xp + addXP;
-                if(xp >= LVL_XP[level]){
-                    xp-=LVL_XP[level];
-                    addLevel();
-                }
+		if(xp >= LVL_XP[level]){
+			xp-=LVL_XP[level];
+			addLevel();
+		}
 		saveAll();
-        }
+	}
 
 	/**
 	 * resets xp upon death
@@ -294,14 +300,14 @@ public class Character {
 	 * @throws IOException
 	 */
 	public void setLocation(int x, int y) throws IOException {
-                locationX = x;
+		locationX = x;
 		locationY = y;
 		saveAll();
 	}
 
-        public void update(){
-            getStats();
-        }
+	public void update(){
+		getStats();
+	}
 
 
 }

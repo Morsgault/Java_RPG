@@ -17,24 +17,33 @@ public class TextAdventure {
 		while (location.isAlive()) {
 			event.eventCalc(location.getWorld());
 			// System.out.println("The Current location is "+location.getX()+", "+location.getY());
-			String input2 = H.inputString();
-			input2 = input2.toLowerCase();
-			if(input2.equals("north")) {
-				location.move(1);
+			boolean move = false;
+			while(move == false) {
+				String input2 = H.inputString();
+				input2 = input2.toLowerCase();
+				if(input2.equals("north")) {
+					location.move(1);
+					move = true;
+				} else if(input2.equals("south")) {
+					location.move(3);
+					move = true;
+				} else if(input2.equals("east")) {
+					location.move(2);
+					move = true;
+				} else if(input2.equals("west")) {
+					location.move(4);
+					move = true;
+				} else if(input2.equals("map")) {
+					location.showMap();
 
-			} else if(input2.equals("south")) {
-				location.move(3);
+				} else if(input2.equals("save")) {
+					event.save();
 
-			} else if(input2.equals("east")) {
-				location.move(2);
-
-			} else if(input2.equals("west")) {
-				location.move(4);
-
-			} else  {
-				System.out.println("Impropper Input");
+				} else {
+					System.out.println("Impropper Input");
+				}
 			}
-			System.out.println("The Current location is "+location.getX()+", "+location.getY());
+			//System.out.println("The Current location is "+location.getX()+", "+location.getY());
 
 		}
 		if(location.isAlive() == false) {

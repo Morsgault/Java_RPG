@@ -26,6 +26,7 @@ public class Login{
 	private int locationX; //The x location of the player
 	private int locationY; //The y location of the player
 	private int weapon; //The weapon the player has
+	private boolean map; //if the player has a map
 	/**
 	 * Logins in a character
 	 * @param charName The character name
@@ -53,6 +54,7 @@ public class Login{
 			locationX = Integer.parseInt(input.readLine());
 			locationY = Integer.parseInt(input.readLine());
 			weapon = Integer.parseInt(input.readLine());
+			map = Boolean.parseBoolean(input.readLine());
 			input.close();
 		}
 		else {
@@ -82,6 +84,7 @@ public class Login{
 			locationX = mapSize/2;
 			locationY = 0;
 			weapon = 0;
+			map = false;
 
 			//Printing Stats to Text File
 			news.write(Integer.toString(health));
@@ -113,6 +116,8 @@ public class Login{
 			news.write(Integer.toString(locationY));
 			news.newLine();
 			news.write(Integer.toString(weapon));
+			news.newLine();
+			news.write(Boolean.toString(map));
 			news.close();
 		}
 	}
@@ -130,7 +135,7 @@ public class Login{
 	 * Saves the current stats
 	 * @throws IOException
 	 */
-	public void saveStats(int health1, int cHealth1, int mana1, int cMana1, int level1, int xp1, int str1, int dex1, int intel1, int clv1, int turns1, int x, int y, int weapon1) throws IOException{
+	public void saveStats(int health1, int cHealth1, int mana1, int cMana1, int level1, int xp1, int str1, int dex1, int intel1, int clv1, int turns1, int x, int y, int weapon1, boolean map1) throws IOException{
 		health = health1;
 		cHealth = cHealth1;
 		mana = mana1;
@@ -145,6 +150,7 @@ public class Login{
 		locationX = x;
 		locationY = y;
 		weapon = weapon1;
+		map = map1;
 
 		File oldSave = new File(pName+".txt");
 		oldSave.delete();
@@ -182,8 +188,19 @@ public class Login{
 		save.write(Integer.toString(locationY));
 		save.newLine();
 		save.write(Integer.toString(weapon));
+		save.newLine();
+		save.write(Boolean.toString(map));
 		save.close();
 	}
+	
+	/**
+	 * returns whether the player has a map
+	 * @return map - If player has a map
+	 */
+	public boolean getMap() {
+		return map;
+	}
+	
 	/**
 	 * Returns Health
 	 * @return Health - Maximum Health

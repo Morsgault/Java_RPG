@@ -39,6 +39,7 @@ public class Location {
 		case 1:
 			y++;
 			alive = y <= maxY;
+			H.pln("move");
 			break;
 		case 2:
 			x++;
