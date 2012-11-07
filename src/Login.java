@@ -176,7 +176,7 @@ public class Login{
 		save.write(Boolean.toString(map));
 		save.close();
 	}
-	
+
 	public void update() throws NumberFormatException, IOException {
 		BufferedReader input = new BufferedReader(new FileReader(pName+".txt"));
 		health = Integer.parseInt(input.readLine());
@@ -197,7 +197,7 @@ public class Login{
 		map = Boolean.parseBoolean(input.readLine());
 		input.close();
 	}
-	
+
 	/**
 	 * returns whether the player has a map
 	 * @return map - If player has a map
@@ -205,7 +205,7 @@ public class Login{
 	public boolean getMap() {
 		return map;
 	}
-	
+
 	/**
 	 * Returns Health
 	 * @return Health - Maximum Health
@@ -325,7 +325,7 @@ public class Login{
 	public int getWeapon() {
 		return weapon;
 	}
-	
+
 }
 
 

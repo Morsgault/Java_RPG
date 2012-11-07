@@ -30,13 +30,13 @@ public class Event {
 	public void eventCalc() throws IOException {
 		player.update();
 		switch(location.getCell()){
-		
+
 		case 1:
 			H.pln("You are stuck in quicksand!");
 			H.pln("You lost 30 health!");
 			player.setCHealth(player.getCHealth() - 30);
 			player.saveAll();
-			if(player.getCHealth() <= 0) 
+			if(player.getCHealth() <= 0)
 				died();
 			break;
 		case 2:
@@ -44,7 +44,7 @@ public class Event {
 			e_calc = new Random();
 			event = e_calc.nextInt(99)+1;
 			if(event>0 && event<60){ //Finding an enemy (60% chance)
-				if(!encounter.Battle()) 
+				if(!encounter.Battle())
 				died();
 				player.update();
 			}
@@ -78,7 +78,7 @@ public class Event {
 			H.pln("Would you like to : (1)Attack or (2)Ignore and Keep Moving?");
 			choice =  H.inputInt();
 			if(choice<= 1 || choice >2){
-				if(!encounter.Battle()) 
+				if(!encounter.Battle())
 				died();
 				player.update();
 			}
@@ -92,7 +92,7 @@ public class Event {
 			H.pln("This is only found");
 			H.pln("on the edges of the island.");
 			break;
-			
+
 		case 6:
 			H.pln("You are in a castle.");
 			while(leave = false){
@@ -106,11 +106,11 @@ public class Event {
 				H.pln("You have left the castle!");
 				leave = true;
 			}
-			
+
 			}
 			leave = false;
 			break;
-			
+
 			case 7:
 				H.pln("You have entered a town");
 			break;
@@ -118,19 +118,19 @@ public class Event {
 				H.pln("YOU HACKER!");
 				H.pln("This type of land is not available yet!!!!");
 			break;
-				
+
 
 			}
-		
+
 	}
-	
+
 	public void move(int direction) throws IOException {
 		location.move(direction);
 		x = location.getX();
 		y = location.getY();
 		player.setLocation(x, y);
 	}
-	
+
 	public void showMap() {
 		if(player.hasMap()) {
 			location.showMap();
@@ -138,7 +138,7 @@ public class Event {
 			H.pln("You do not have a map");
 		}
 	}
-	
+
 	public void save() throws IOException {
 		player.update();
 		player.setLocation(x, y);

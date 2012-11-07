@@ -88,7 +88,7 @@ public class AttackEngine {
 				H.pln("You lost "+damage+" health");
 				PC_HEALTH-=damage;
 				player.setCHealth(PC_HEALTH);
-				if (player.getCHealth() <= 0) 
+				if (player.getCHealth() <= 0)
 					return false;
 				break;
 			case 2:

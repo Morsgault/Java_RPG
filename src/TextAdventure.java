@@ -11,7 +11,7 @@ public class TextAdventure {
 		//	Character character = new Character(charName);
 		//	int mapSize = character.getMapSize();
 		//	Location location = new Location(mapSize, charName, character.getLocationX(), character.getLocationY());
-		Event event = new Event(charName); 
+		Event event = new Event(charName);
 		System.out.println("You find yourself on a deserted island. The last thing you remember is going to bed on in your cabin on your ship on route to Africa.");
 		while (true) {
 			while (event.isAlive()) {
@@ -60,7 +60,7 @@ public class TextAdventure {
 
 					} else if(input2.equals("revive")){
 						event.revive();
-						
+
 					} else {
 						System.out.println("Impropper Input");
 					}

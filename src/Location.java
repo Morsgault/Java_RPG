@@ -50,7 +50,7 @@ public class Location {
 			else{
 				H.pln("You hae reached the limits of the island");
 			}
-			
+
 			break;
 		case 3:
 			if(y>0){
