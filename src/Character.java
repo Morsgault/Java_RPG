@@ -57,7 +57,7 @@ public class Character {
 		weapon = login.getWeapon();
 		hasMap = login.getMap();
 	}
-	
+
 	public void findMap() {
 		hasMap = true;
 	}
@@ -228,7 +228,6 @@ public class Character {
 			intel = getIntel() + 3;
 			cHealth = getHealth();
 			cMana = getMana();
-			H.pln("You are now level "+level+" !");
 		}
 		else{
 			level++;
@@ -240,7 +239,9 @@ public class Character {
 			cHealth = getHealth();
 			cMana = getMana();
 		}
-			
+
+                H.pln("You are now level "+level+"!");
+
 		saveAll();
 	}
 
@@ -331,7 +332,7 @@ public class Character {
 		login.update();
 		getStats();
 	}
-	
+
 	/**
 	 * Tells if the player has the map
 	 * @return hasMap - if the player has a map
@@ -339,7 +340,4 @@ public class Character {
 	public boolean hasMap() {
 		return hasMap;
 	}
-
-
 }
-
