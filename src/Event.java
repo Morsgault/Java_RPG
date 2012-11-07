@@ -34,7 +34,7 @@ public class Event {
 		case 1:
 			H.pln("You are stuck in quicksand!");
 			H.pln("You lost 30 health!");
-			player.setCHealth(player.getHealth() - 30);
+			player.setCHealth(player.getCHealth() - 30);
 			player.saveAll();
 			if(player.getCHealth() <= 0) 
 				died();
