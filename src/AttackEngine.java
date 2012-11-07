@@ -29,7 +29,8 @@ public class AttackEngine {
 		player = new Character(charName);
 		elgen = new Random();
 	}
-	public void Battle() throws IOException{
+	public boolean Battle() throws IOException{
+		boolean alive = true;
 		int health;
 		flee = false;
 		P_HEALTH = player.getHealth();
@@ -84,6 +85,7 @@ public class AttackEngine {
 				H.pln("You lost "+damage+" health");
 				PC_HEALTH-=damage;
 				player.setCHealth(PC_HEALTH);
+				if (player.getCHealth() <= 0) return false;
 				break;
 			case 2:
 				H.pln("You have blocked the enemy attack!");
@@ -104,5 +106,6 @@ public class AttackEngine {
 			H.pln("You lost "+EC_HEALTH+" XP!");
 		}
 		player.saveAll();
+		return true;
 	}
 }

@@ -309,6 +309,14 @@ public class Character {
 		login.update();
 		getStats();
 	}
+	
+	/**
+	 * Tells if the player has the map
+	 * @return hasMap - if the player has a map
+	 */
+	public boolean hasMap() {
+		return hasMap;
+	}
 
 
 }

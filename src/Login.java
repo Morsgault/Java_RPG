@@ -23,6 +23,7 @@ public class Login{
 	private int locationY; //The y location of the player
 	private int weapon; //The weapon the player has
 	private boolean map; //if the player has a map
+	private boolean alive; //if the player is alive
 	/**
 	 * Logins in a character
 	 * @param charName The character name
@@ -66,6 +67,7 @@ public class Login{
 			locationY = 0;
 			weapon = 0;
 			map = false;
+			//alive = true;
 
 			//Printing Stats to Text File
 			news.write(Integer.toString(health));

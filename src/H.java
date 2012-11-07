@@ -21,12 +21,15 @@ public class H {
 	public static int inputInt() {
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
-		int num = 1;
-		try {
-			num = input.nextInt();
-		} catch (InputMismatchException e) {
-			System.out.println("Improper input number expected");
-			System.out.println("Option 1 automatically chosen.");
+		int num = 0;
+		String str = "";
+		while(!str.matches("-?\\d+")) {
+			str = input.next();
+			if(!str.matches("-?\\d+")) {
+				System.out.println("Improper input. Number Expected.");
+			} else {
+				num = Integer.parseInt(str);
+			}
 		}
 		return num;
 	}

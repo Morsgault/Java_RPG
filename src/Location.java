@@ -22,15 +22,13 @@ public class Location {
 	public Location(int worldSize, String charName, int locationX, int locationY) throws IOException {
 		x = locationX;
 		y = locationY;
-		alive = true;
 		mapSize = worldSize;
 		maxX = mapSize - 1;
 		maxY = mapSize - 1;
 		world = new int[mapSize][mapSize];
-		hasMap = true;
 		playerName = charName;
 		genWorld();
-		showMap();
+		//showMap();
 	}
 
 	public void move(int direction) {
@@ -63,33 +61,23 @@ public class Location {
 	public int getY() {
 		return y;
 	}
-	public boolean isAlive() {
-		return alive;
-	}
 	public void died() {
-		alive = false;
-	}
-	/*
-	 * This method gives the player the map is they happen to find it in the world
-	 */
-	public void findMap() {
-		hasMap = true;
+		x = mapSize/2;
+		y = 0;
 	}
 	/*
 	 * This method prints the map into the system output
 	 */
 	public void showMap() {
-		if(hasMap) {
-			for(int r = 0; r < mapSize; r++) {
-				String str = "";
-				for(int f = 0; f < mapSize; f++) {
-					str = str + world[r][f];
-				}
-				System.out.println(str);
+		for(int r = 0; r < mapSize; r++) {
+			String str = "";
+			for(int f = 0; f < mapSize; f++) {
+				str = str + world[f][r];
 			}
+			System.out.println(str);
 		}
 	}
-	
+
 	public void editMap(int editX, int editY, int worldType) throws IOException {
 		world[editX][editY] = worldType;
 		File edit = new File(playerName+"Map.txt");
@@ -107,11 +95,11 @@ public class Location {
 		}
 		editMap.close();
 	}
-	
+
 	public int getCell() {
 		return world[x][y];
 	}
-	
+
 	/*
 	 * This method generates the world or if the player has a save file reloads the world.
 	 */
@@ -165,10 +153,10 @@ public class Location {
 				world[0][k] = 5;
 				world[mapSize - 1][k] = 5;
 			}
-			
-				int clx = rand.nextInt(mapSize);
-				int cly = rand.nextInt(mapSize);
-			
+
+			int clx = rand.nextInt(mapSize);
+			int cly = rand.nextInt(mapSize);
+
 			//set castle location
 			world[clx][cly] = 6;
 
