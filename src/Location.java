@@ -1,3 +1,4 @@
+package txtrpg;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -35,21 +36,37 @@ public class Location {
 		switch (direction) {
 
 		case 1:
-			y++;
-			alive = y <= maxY;
-			H.pln("move");
+			if(y<maxY){
+				y++;
+			}
+			else{
+				H.pln("You hae reached the limits of the island");
+			}
 			break;
 		case 2:
-			x++;
-			alive = x <= maxX;
+			if(x<maxX){
+				x++;
+			}
+			else{
+				H.pln("You hae reached the limits of the island");
+			}
+			
 			break;
 		case 3:
-			y--;
-			alive = (y >= 0);
+			if(y>0){
+				y--;
+			}
+			else{
+				H.pln("You have reached the limits of the island");
+			}
 			break;
 		case 4:
-			x--;
-			alive = (x >= 0);
+			if(x>=0){
+				x--;
+			}
+			else{
+				H.pln("You have reached the limits of the island");
+			}
 			break;
 		default:
 			break;
@@ -178,3 +195,4 @@ public class Location {
 		return f.exists();
 	}
 }
+

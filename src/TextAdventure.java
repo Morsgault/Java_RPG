@@ -1,3 +1,4 @@
+package txtrpg;
 import java.io.IOException;
 
 public class TextAdventure {
@@ -80,3 +81,5 @@ public class TextAdventure {
 		//		}
 	}
 }
+
+

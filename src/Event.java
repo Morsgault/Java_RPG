@@ -1,3 +1,4 @@
+package txtrpg;
 import java.io.IOException;
 import java.util.Random;
 
@@ -27,20 +28,24 @@ public class Event {
 	}
 
 	public void eventCalc() throws IOException {
+		player.update();
 		switch(location.getCell()){
+		
 		case 1:
 			H.pln("You are stuck in quicksand!");
 			H.pln("You lost 30 health!");
 			player.setCHealth(player.getHealth() - 30);
 			player.saveAll();
-			if(player.getCHealth() <= 0) died();
+			if(player.getCHealth() <= 0) 
+				died();
 			break;
 		case 2:
 			H.pln("You are in a Forest!");
 			e_calc = new Random();
 			event = e_calc.nextInt(99)+1;
 			if(event>0 && event<60){ //Finding an enemy (60% chance)
-				if(!encounter.Battle()) died();
+				if(!encounter.Battle()) 
+				died();
 				player.update();
 			}
 			if(event>=61 && event<=90){ //30% chance of nothing
@@ -64,7 +69,8 @@ public class Event {
 			H.pln("You have found a pond.");
 			H.pln("All seems quiet and peaceful.");
 			H.pln("You have regained 30 Health!");
-			player.setCHealth(player.getCHealth()+30);
+			player.setCHealth((player.getCHealth())+30);
+			player.saveAll();
 			break;
 		case 4:
 			H.pln("You are on a field");
@@ -72,7 +78,8 @@ public class Event {
 			H.pln("Would you like to : (1)Attack or (2)Ignore and Keep Moving?");
 			choice =  H.inputInt();
 			if(choice<= 1 || choice >2){
-				if(!encounter.Battle()) died();
+				if(!encounter.Battle()) 
+				died();
 				player.update();
 			}
 			else{
@@ -156,3 +163,4 @@ public class Event {
 	}
 
 }
+

@@ -1,3 +1,4 @@
+package txtrpg;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 public class H {
@@ -42,3 +43,4 @@ public class H {
 
 
 }
+

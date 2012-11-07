@@ -1,3 +1,4 @@
+package txtrpg;
 import java.io.IOException;
 
 
@@ -218,7 +219,28 @@ public class Character {
 	 * @throws IOException
 	 */
 	private void addLevel() throws IOException {
-		level++;
+		if(level<10){
+			level++;
+			health = getHealth()+30;
+			mana = getMana() +30;
+			str = getStr() + 3;
+			dex  = getDex() + 3;
+			intel = getIntel() + 3;
+			cHealth = getHealth();
+			cMana = getMana();
+			H.pln("You are now level "+level+" !");
+		}
+		else{
+			level++;
+			health = getHealth()+30;
+			mana = getMana() +30;
+			str = getStr() + 3;
+			dex  = getDex() + 3;
+			intel = getIntel() + 3;
+			cHealth = getHealth();
+			cMana = getMana();
+		}
+			
 		saveAll();
 	}
 
@@ -320,3 +342,4 @@ public class Character {
 
 
 }
+
