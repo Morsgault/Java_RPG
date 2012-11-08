@@ -1,3 +1,9 @@
+//Java_RPG
+//Alpha 1.0.0
+//Released 11/08/2012
+//©2012 Ryan Cicchiello & Jason Holman
+//See LICENCE for details
+
 package txtrpg;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
