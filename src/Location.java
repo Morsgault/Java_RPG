@@ -36,7 +36,7 @@ public class Location {
 		switch (direction) {
 
 		case 1:
-			if(y<maxY){
+			if(y>0){
 				y--;
 			}
 			else{
@@ -53,7 +53,7 @@ public class Location {
 			
 			break;
 		case 3:
-			if(y>0){
+			if(y<maxY){
 				y++;
 			}
 			else{
