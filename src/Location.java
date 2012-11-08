@@ -21,7 +21,7 @@ public class Location {
 	private String playerName;
 
 	public Location(int worldSize, String charName, int locationX, int locationY) throws IOException {
-		x = 0;//locationX;
+		x = locationX;
 		y = locationY;
 		mapSize = worldSize;
 		maxX = mapSize - 1;
