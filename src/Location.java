@@ -21,7 +21,7 @@ public class Location {
 	private String playerName;
 
 	public Location(int worldSize, String charName, int locationX, int locationY) throws IOException {
-		x = locationX;
+		x = 0;//locationX;
 		y = locationY;
 		mapSize = worldSize;
 		maxX = mapSize - 1;
@@ -37,7 +37,7 @@ public class Location {
 
 		case 1:
 			if(y<maxY){
-				y++;
+				y--;
 			}
 			else{
 				H.pln("You hae reached the limits of the island");
@@ -54,14 +54,14 @@ public class Location {
 			break;
 		case 3:
 			if(y>0){
-				y--;
+				y++;
 			}
 			else{
 				H.pln("You have reached the limits of the island");
 			}
 			break;
 		case 4:
-			if(x>=0){
+			if(x>0){
 				x--;
 			}
 			else{
@@ -89,7 +89,7 @@ public class Location {
 		for(int r = 0; r < mapSize; r++) {
 			String str = "";
 			for(int f = 0; f < mapSize; f++) {
-				str = str + world[f][r];
+				str = str + world[r][f];
 			}
 			System.out.println(str);
 		}
@@ -114,7 +114,7 @@ public class Location {
 	}
 
 	public int getCell() {
-		return world[x][y];
+		return world[y][x];
 	}
 
 	/*

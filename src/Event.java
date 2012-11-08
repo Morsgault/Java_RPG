@@ -45,10 +45,10 @@ public class Event {
 			event = e_calc.nextInt(99)+1;
 			if(event>0 && event<60){ //Finding an enemy (60% chance)
 				if(!encounter.Battle()) 
-				died();
+					died();
 				player.update();
 			}
-			if(event>=61 && event<=90){ //30% chance of nothing
+			if(event>=61 && event<=90) { //30% chance of nothing
 				H.pln("Nothing here seems out of the ordinary.");
 			}
 			if(event>=91 && event<=95){ //5% chance of finding extra XP
@@ -79,7 +79,7 @@ public class Event {
 			choice =  H.inputInt();
 			if(choice<= 1 || choice >2){
 				if(!encounter.Battle()) 
-				died();
+					died();
 				player.update();
 			}
 			else{
@@ -99,7 +99,8 @@ public class Event {
 			H.pln("You can:");
 			H.pln("(1) Fight Enemies, (2) Leave");
 			if(H.inputInt()==1){
-				if(!encounter.Battle()) died();
+				if(!encounter.Battle())
+					died();
 				player.update();
 			}
 			else{
@@ -160,6 +161,11 @@ public class Event {
 	}
 	public void revive() {
 		alive = true;
+	}
+	public void showStats() {
+		H.pln("Current Health - "+player.getCHealth()+"/"+player.getHealth());
+		H.pln("Current XP - "+player.getXp());
+		H.pln("Current Level - "+player.getLevel());
 	}
 
 }

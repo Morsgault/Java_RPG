@@ -12,7 +12,8 @@ public class TextAdventure {
 		//	int mapSize = character.getMapSize();
 		//	Location location = new Location(mapSize, charName, character.getLocationX(), character.getLocationY());
 		Event event = new Event(charName); 
-		System.out.println("You find yourself on a deserted island. The last thing you remember is going to bed on in your cabin on your ship on route to Africa.");
+		H.pln("You find yourself on a deserted island. The last thing you remember is going to bed on in your cabin on your ship on route to Africa.");
+		H.pln("You have a dog named Tido following you for no apparent reason!");
 		while (true) {
 			while (event.isAlive()) {
 				event.eventCalc();
@@ -61,8 +62,10 @@ public class TextAdventure {
 					} else if(input2.equals("revive")){
 						event.revive();
 						
+					} else if(input2.equals("stats")){
+						event.showStats();
 					} else {
-						System.out.println("Impropper Input");
+						System.out.println("Improper Input");
 					}
 				}
 				//System.out.println("The Current location is "+location.getX()+", "+location.getY());

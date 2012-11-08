@@ -32,6 +32,7 @@ public class AttackEngine {
 		elgen = new Random();
 	}
 	public boolean Battle() throws IOException{
+		player.update();
 		boolean alive = true;
 		int health;
 		flee = false;
