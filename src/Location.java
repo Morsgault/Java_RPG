@@ -1,5 +1,5 @@
 //Java_RPG
-//Alpha 1.0.0
+//Alpha 1.0.01
 //Released 11/08/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
@@ -46,7 +46,7 @@ public class Location {
 				y--;
 			}
 			else{
-				H.pln("You hae reached the limits of the island");
+				H.pln("You have reached the limits of the island");
 			}
 			break;
 		case 2:
@@ -54,7 +54,7 @@ public class Location {
 				x++;
 			}
 			else{
-				H.pln("You hae reached the limits of the island");
+				H.pln("You have reached the limits of the island");
 			}
 			
 			break;

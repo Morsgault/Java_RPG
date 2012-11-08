@@ -1,5 +1,5 @@
 //Java_RPG
-//Alpha 1.0.0
+//Alpha 1.0.01
 //Released 11/08/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details

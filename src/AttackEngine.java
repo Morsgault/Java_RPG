@@ -1,5 +1,5 @@
 //Java_RPG
-//Alpha 1.0.0
+//Alpha 1.0.01
 //Released 11/08/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
@@ -32,7 +32,7 @@ public class AttackEngine {
 	private Character player;
 	private Random elgen;
 	private Random engine;
-
+	private int helper;
 	public AttackEngine(String charName) throws NumberFormatException, IOException{
 		player = new Character(charName);
 		elgen = new Random();
@@ -70,20 +70,43 @@ public class AttackEngine {
 			case 1:
 				if(engine.nextInt(99)+1 <= 95){
 					damage = engine.nextInt(P_MAX_DAMAGE[plevel]);
-					H.pln("Enemy lost "+damage+" health!");
-					EC_HEALTH-=damage;
+					if(damage<=EC_HEALTH){
+						H.pln("Enemy lost "+damage+" health!");
+						EC_HEALTH-=damage;
+					}
+					else{
+						helper = EC_HEALTH;
+						H.pln("Enemy lost "+helper+" health!");
+						EC_HEALTH = 0;
+					}
 				}
 				else{
 					if(plevel<=8){
 						damage = engine.nextInt(P_MAX_DAMAGE[plevel+2]);
 						H.pln("Critical Hit!");
+						if(damage<=EC_HEALTH){
 						H.pln("Enemy lost "+damage+" health!");
+						EC_HEALTH-=damage;
+					}
+					else{
+						helper = EC_HEALTH;
+						H.pln("Enemy lost "+helper+" health!");
+						EC_HEALTH = 0;
+					}
 					}
 					else{
 						if(plevel == 9){
 							damage = engine.nextInt(P_MAX_DAMAGE[plevel+1]);
 							H.pln("Critical Hit!");
-							H.pln("Enemy lost "+damage+" health!");
+							if(damage<=EC_HEALTH){
+								H.pln("Enemy lost "+damage+" health!");
+								EC_HEALTH-=damage;
+							}	
+							else{
+								helper = EC_HEALTH;
+								H.pln("Enemy lost "+helper+" health!");
+								EC_HEALTH = 0;
+							}
 						}
 						if(plevel == 10){
 							damage = EC_HEALTH;

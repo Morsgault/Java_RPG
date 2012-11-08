@@ -1,5 +1,5 @@
 //Java_RPG
-//Alpha 1.0.0
+//Alpha 1.0.01
 //Released 11/08/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
@@ -205,8 +205,13 @@ public class Character {
 	 * @throws IOException
 	 */
 	public void setCHealth(int setHealth) throws IOException {
-		cHealth = setHealth;
-		saveAll();
+		if(setHealth<=health){
+			cHealth = setHealth;
+			saveAll();
+		}
+		else{
+			cHealth = health;
+		}
 	}
 
 	/**
@@ -234,7 +239,7 @@ public class Character {
 			intel = getIntel() + 3;
 			cHealth = getHealth();
 			cMana = getMana();
-			H.pln("You are now level "+level+" !");
+			H.pln("You are now level "+level+"!");
 		}
 		else{
 			level++;
