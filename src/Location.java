@@ -1,6 +1,6 @@
 //Java_RPG
-//Alpha 1.0.01
-//Released 11/08/2012
+//Alpha 1.1.0
+//Released 11/09/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
 
@@ -103,7 +103,7 @@ public class Location {
 
 	public void editMap(int editX, int editY, int worldType) throws IOException {
 		world[editX][editY] = worldType;
-		File edit = new File(playerName+"Map.txt");
+		File edit = new File(playerName+".map");
 		edit.delete();
 		edit.createNewFile();
 		BufferedWriter editMap = new BufferedWriter(new FileWriter(edit));
@@ -128,7 +128,7 @@ public class Location {
 	 */
 	private void genWorld() throws IOException {
 		if(Exists(playerName)) {
-			BufferedReader load = new BufferedReader(new FileReader(playerName+"Map.txt"));
+			BufferedReader load = new BufferedReader(new FileReader(playerName+".map"));
 			String loadMap[] = new String[mapSize];
 			for(int p = 0; p < mapSize; p++) {
 				loadMap[p] = load.readLine();
@@ -141,26 +141,30 @@ public class Location {
 			load.close();
 
 		} else {
-			File newMap = new File(playerName+"Map.txt");
-			newMap.createNewFile();
-
-			BufferedWriter map = new BufferedWriter(new FileWriter(newMap));
 			Random rand = new Random();
 			for(int i = 0; i < mapSize; i++) {
 				for(int j = 0; j < mapSize; j++) {
 					int randNum = rand.nextInt(100)+1;
 					int type = 0;
-					// Quicksand block
-					if(randNum > 0 && randNum < 11) type = 1;
-					// forest block
-					if(randNum > 10 && randNum <61) type = 2;
-					// pond block
-					if(randNum > 90 && randNum < 101) type = 3;
-					// field block
-					if(randNum > 65 && randNum < 91) type = 4;
-					//town block
-					if(randNum > 60 && randNum < 66) type = 7;
-					//type 8 is a player built house
+					// Quicksand block 5% chance of generaton
+					if(randNum > 0 && randNum < 6) 
+						type = 1;
+					// forest block 60% chance of generaton
+					if(randNum > 5 && randNum < 56) 
+						type = 2;
+					// pond block 10% chance of generation
+					if(randNum > 90 && randNum < 101) 
+						type = 3;
+					// field block 10% chance of generaton
+					if(randNum > 65 && randNum < 91) 
+						type = 4;
+					//town block 5% chance of generation
+					if(randNum > 60 && randNum < 66) 
+						type = 7;
+					//mine block 5% chance of generation
+					if(randNum > 55 && randNum < 61) 
+						type = 9;
+					//type 8 is a player built house 0% chance of generation
 					if(type == 0) {
 						System.out.println("Land Generator Error");
 						System.out.println("Program Terminated");
@@ -182,7 +186,11 @@ public class Location {
 
 			//set castle location
 			world[clx][cly] = 6;
+			
+			File newMap = new File(playerName+".map");
+			newMap.createNewFile();
 
+			BufferedWriter map = new BufferedWriter(new FileWriter(newMap));
 			String str = "";
 			for(int a = 0; a < mapSize; a++) {
 				str = "";
@@ -197,7 +205,7 @@ public class Location {
 		}
 	}
 	public boolean Exists(String charName){
-		File f = new File(charName+"Map.txt");
+		File f = new File(charName+".map");
 		return f.exists();
 	}
 }

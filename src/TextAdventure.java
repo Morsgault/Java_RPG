@@ -1,6 +1,6 @@
 //Java_RPG
-//Alpha 1.0.01
-//Released 11/08/2012
+//Alpha 1.1.0
+//Released 11/09/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
 
@@ -65,11 +65,13 @@ public class TextAdventure {
 						H.pln("quit - saves and quits game");
 						if(!event.isAlive()) move = true;
 
-					} else if(input2.equals("revive")){
+					} else if(input2.equals("revive")) {
 						event.revive();
 						
-					} else if(input2.equals("stats")){
+					} else if(input2.equals("stats")) {
 						event.showStats();
+					} else if(input2.equals("take")) {
+						event.take();
 					} else {
 						System.out.println("Improper Input");
 					}
@@ -79,8 +81,8 @@ public class TextAdventure {
 			}
 			while(!event.isAlive()) {
 				H.pln("You are dead");
-				H.pln("Type \"revive\" to revive");
-				if(H.inputString().toLowerCase().equals("revive")) {
+				H.pln("Type \"respawn\" to respawn");
+				if(H.inputString().toLowerCase().equals("respawn")) {
 					event.revive();
 				} else H.pln("Impropper input");
 			}

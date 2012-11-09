@@ -1,6 +1,6 @@
 //Java_RPG
-//Alpha 1.0.01
-//Released 11/08/2012
+//Alpha 1.1.0
+//Released 11/09/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
 
@@ -19,7 +19,7 @@ public class Login{
 	private int mana; // The players mana
 	private int cMana; //The players current mana
 	private int level; // The players level
-	private int xp; // The players expierience
+	private int xp; // The players experience
 	private int str; //The players Strength rating
 	private int dex; //The players Dexterity rating
 	private int intel; //The players intelligence rating
@@ -29,8 +29,13 @@ public class Login{
 	private int locationX; //The x location of the player
 	private int locationY; //The y location of the player
 	private int weapon; //The weapon the player has
+	private int wood; //The amount of wood the player has
+	private int gold; //The amount of gold the player has
+	private int iron; //The amount of iron the player has
+	private boolean axe; //if the player has an axe
+	private boolean pick; //it the player has a pick axe
 	private boolean map; //if the player has a map
-	private boolean alive; //if the player is alive
+
 	/**
 	 * Logins in a character
 	 * @param charName The character name
@@ -53,7 +58,7 @@ public class Login{
 			}
 			System.out.println("No Character File Found");
 			System.out.println("Creating File");
-			File newChar = new File(charName+".txt");
+			File newChar = new File(charName+".plr");
 			newChar.createNewFile();
 
 			BufferedWriter news = new BufferedWriter(new FileWriter(newChar));
@@ -73,8 +78,6 @@ public class Login{
 			locationX = mapSize/2;
 			locationY = 0;
 			weapon = 0;
-			map = false;
-			//alive = true;
 
 			//Printing Stats to Text File
 			news.write(Integer.toString(health));
@@ -104,11 +107,35 @@ public class Login{
 			news.write(Integer.toString(locationX));
 			news.newLine();
 			news.write(Integer.toString(locationY));
-			news.newLine();
-			news.write(Integer.toString(weapon));
-			news.newLine();
-			news.write(Boolean.toString(map));
 			news.close();
+			
+			File newInv = new File(charName+".inv");
+			newInv.createNewFile();
+			
+			BufferedWriter inv = new BufferedWriter(new FileWriter(newInv));
+			
+			weapon = 0;
+			wood = 0;
+			gold = 0;
+			iron = 0;
+			axe = false;
+			pick = false;
+			map = false;
+			
+			inv.write(Integer.toString(weapon));
+			inv.newLine();
+			inv.write(Integer.toString(wood));
+			inv.newLine();
+			inv.write(Integer.toString(gold));
+			inv.newLine();
+			inv.write(Integer.toString(iron));
+			inv.newLine();
+			inv.write(Boolean.toString(axe));
+			inv.newLine();
+			inv.write(Boolean.toString(pick));
+			inv.newLine();
+			inv.write(Boolean.toString(map));
+			inv.close();
 		}
 	}
 	/**
@@ -117,7 +144,7 @@ public class Login{
 	 * @return
 	 */
 	public boolean Exists(String charName){
-		File f = new File(charName+".txt");
+		File f = new File(charName+".plr");
 		return f.exists();
 	}
 
@@ -125,7 +152,7 @@ public class Login{
 	 * Saves the current stats
 	 * @throws IOException
 	 */
-	public void saveStats(int health1, int cHealth1, int mana1, int cMana1, int level1, int xp1, int str1, int dex1, int intel1, int clv1, int turns1, int x, int y, int weapon1, boolean map1) throws IOException{
+	public void saveStats(int health1, int cHealth1, int mana1, int cMana1, int level1, int xp1, int str1, int dex1, int intel1, int clv1, int turns1, int x, int y, int weapon1, boolean map1, boolean axe1, boolean pick1, int wood1, int gold1, int iron1) throws IOException{
 		health = health1;
 		cHealth = cHealth1;
 		mana = mana1;
@@ -141,10 +168,15 @@ public class Login{
 		locationY = y;
 		weapon = weapon1;
 		map = map1;
+		axe = axe1;
+		pick = pick1;
+		wood = wood1;
+		gold = gold1;
+		iron = iron1;
 
-		File oldSave = new File(pName+".txt");
+		File oldSave = new File(pName+".plr");
 		oldSave.delete();
-		File newSave = new File(pName+".txt");
+		File newSave = new File(pName+".plr");
 		newSave.createNewFile();
 
 		BufferedWriter save = new BufferedWriter(new FileWriter(newSave));
@@ -176,15 +208,34 @@ public class Login{
 		save.write(Integer.toString(locationX));
 		save.newLine();
 		save.write(Integer.toString(locationY));
-		save.newLine();
-		save.write(Integer.toString(weapon));
-		save.newLine();
-		save.write(Boolean.toString(map));
 		save.close();
+		
+		File oldInv = new File(pName+".inv");
+		oldInv.delete();
+		File newInv = new File(pName+".inv");
+		newInv.createNewFile();
+		
+		BufferedWriter saveInv = new BufferedWriter(new FileWriter(newInv));
+		
+		saveInv.write(Integer.toString(weapon));
+		saveInv.newLine();
+		saveInv.write(Integer.toString(wood));
+		saveInv.newLine();
+		saveInv.write(Integer.toString(gold));
+		saveInv.newLine();
+		saveInv.write(Integer.toString(iron));
+		saveInv.newLine();
+		saveInv.write(Boolean.toString(axe));
+		saveInv.newLine();
+		saveInv.write(Boolean.toString(pick));
+		saveInv.newLine();
+		saveInv.write(Boolean.toString(map));
+		saveInv.close();
+		
 	}
 	
 	public void update() throws NumberFormatException, IOException {
-		BufferedReader input = new BufferedReader(new FileReader(pName+".txt"));
+		BufferedReader input = new BufferedReader(new FileReader(pName+".plr"));
 		health = Integer.parseInt(input.readLine());
 		cHealth = Integer.parseInt(input.readLine());
 		mana = Integer.parseInt(input.readLine());
@@ -199,9 +250,18 @@ public class Login{
 		mapSize = Integer.parseInt(input.readLine());
 		locationX = Integer.parseInt(input.readLine());
 		locationY = Integer.parseInt(input.readLine());
-		weapon = Integer.parseInt(input.readLine());
-		map = Boolean.parseBoolean(input.readLine());
 		input.close();
+		
+		BufferedReader getInv = new BufferedReader(new FileReader(pName+".inv"));
+		
+		weapon = Integer.parseInt(getInv.readLine());
+		wood = Integer.parseInt(getInv.readLine());
+		gold = Integer.parseInt(getInv.readLine());
+		iron = Integer.parseInt(getInv.readLine());
+		axe = Boolean.parseBoolean(getInv.readLine());
+		pick = Boolean.parseBoolean(getInv.readLine());
+		map = Boolean.parseBoolean(getInv.readLine());
+		getInv.close();
 	}
 	
 	/**
@@ -330,6 +390,45 @@ public class Login{
 	 */
 	public int getWeapon() {
 		return weapon;
+	}
+	
+	/**
+	 * Retrieves whether or not the player has an axe
+	 * @return axe - if the player has an axe
+	 */
+	public boolean getAxe() {
+		return axe;
+	}
+	
+	/**
+	 * Retrieves whether or not the player has a pick axe
+	 * @return pick - if the player has a pick axe
+	 */
+	public boolean getPick() {
+		return pick;
+	}
+	
+	/**
+	 * Retrieves the amount of wood the player has
+	 * @return wood - the amount of wood the player has
+	 */
+	public int getWood() {
+		return wood;
+	}
+	
+	/**
+	 * Retrieves the amount of gold the player has
+	 * @return gold - the amount of gold the player has
+	 */
+	public int getGold() {
+		return gold;
+	}
+	/**
+	 *Retrieves the amount of iron the player has
+	 * @return iron - the amount of iron the player has
+	 */
+	public int getIron() {
+		return iron;
 	}
 	
 }

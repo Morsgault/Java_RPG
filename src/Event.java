@@ -1,6 +1,6 @@
 //Java_RPG
-//Alpha 1.0.01
-//Released 11/08/2012
+//Alpha 1.1.0
+//Released 11/09/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
 
@@ -19,10 +19,12 @@ public class Event {
 	private Location location;
 	private int x;
 	private int y;
+	private int item;
 	private boolean leave;
 	private boolean alive;
 
 	public Event(String charName) throws NumberFormatException, IOException {
+		item = 0;
 		encounter = new AttackEngine(charName);
 		player = new Character(charName);
 		leave = false;
@@ -34,9 +36,11 @@ public class Event {
 	}
 
 	public void eventCalc() throws IOException {
+		item = 0;
 		player.update();
+		e_calc = new Random();
 		switch(location.getCell()){
-		
+
 		case 1:
 			H.pln("You are stuck in quicksand!");
 			H.pln("You lost 30 health!");
@@ -47,15 +51,18 @@ public class Event {
 			break;
 		case 2:
 			H.pln("You are in a Forest!");
-			e_calc = new Random();
 			event = e_calc.nextInt(99)+1;
 			if(event>0 && event<60){ //Finding an enemy (60% chance)
 				if(!encounter.Battle()) 
 					died();
 				player.update();
 			}
-			if(event>=61 && event<=90) { //30% chance of nothing
+			if(event>=61 && event<=80) { //20% chance of nothing
 				H.pln("Nothing here seems out of the ordinary.");
+			}
+			if(event >= 81 && event <= 90) { //10% chance of finding fallen tree
+				H.pln("You see a fallen tree on the ground.");
+				item = 1;
 			}
 			if(event>=91 && event<=95){ //5% chance of finding extra XP
 				H.pln("You found a book");
@@ -98,46 +105,62 @@ public class Event {
 			H.pln("This is only found");
 			H.pln("on the edges of the island.");
 			break;
-			
+
 		case 6:
 			H.pln("You are in a castle.");
 			while(leave = false){
-			H.pln("You can:");
-			H.pln("(1) Fight Enemies, (2) Leave");
-			if(H.inputInt()==1){
-				if(!encounter.Battle())
-					died();
-				player.update();
-			}
-			else{
-				H.pln("You have left the castle!");
-				leave = true;
-			}
-			
+				H.pln("You can:");
+				H.pln("(1) Fight Enemies, (2) Leave");
+				if(H.inputInt()==1){
+					if(!encounter.Battle())
+						died();
+					player.update();
+				}
+				else{
+					H.pln("You have left the castle!");
+					leave = true;
+				}
+
 			}
 			leave = false;
 			break;
-			
-			case 7:
-				H.pln("You have entered a town");
-			break;
-			case 8:
-				H.pln("YOU HACKER!");
-				H.pln("This type of land is not available yet!!!!");
-			break;
-				
 
+		case 7:
+			H.pln("You have entered a town");
+			break;
+		case 8:
+			H.pln("YOU HACKER!");
+			H.pln("This type of land is not available yet!!!!");
+			break;
+
+		case 9:
+			H.pln("You have found a mine!");
+			event = e_calc.nextInt(99) + 1;
+			if(event > 0 && event <= 15) {
+				H.pln("You found gold!");
+				item = 2;
+			} else if(event > 15 && event <= 50) {
+				H.pln("You found iron");
+				item = 3;
+			} else {
+				H.pln("All you find is stone :(");
 			}
-		
+			
+			
+		default:
+			H.pln("Cell read error - Event.java eventCalc()");
+			break;
+		}
+
 	}
-	
+
 	public void move(int direction) throws IOException {
 		location.move(direction);
 		x = location.getX();
 		y = location.getY();
 		player.setLocation(x, y);
 	}
-	
+
 	public void showMap() {
 		if(player.hasMap()) {
 			location.showMap();
@@ -145,9 +168,8 @@ public class Event {
 			H.pln("You do not have a map");
 		}
 	}
-	
+
 	public void save() throws IOException {
-		player.update();
 		player.setLocation(x, y);
 		player.saveAll();
 	}
@@ -172,6 +194,32 @@ public class Event {
 		H.pln("Current Health - "+player.getCHealth()+"/"+player.getHealth());
 		H.pln("Current XP - "+player.getXp());
 		H.pln("Current Level - "+player.getLevel());
+	}
+	public void take() throws IOException {
+		switch(item) {
+		case 0:
+			H.pln("There is nothing for you to take");
+			break;
+		case 1:
+			H.pln("You took 5 wood.");
+			player.setWood(5);
+			break;
+		case 2:
+			int goldAmount = e_calc.nextInt(4) + 1;
+			H.pln("You took "+goldAmount+" gold.");
+			player.setGold(goldAmount);
+			break;
+		case 3:
+			int ironAmount = e_calc.nextInt(6) + 1;
+			H.pln("You took "+ironAmount+" iron.");
+			player.setIron(ironAmount);
+			break;
+		default:
+			H.pln("Error - Event.java take() method");
+			H.pln("There is nothing for you to take");
+			break;
+
+		}
 	}
 
 }

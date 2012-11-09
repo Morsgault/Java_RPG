@@ -1,6 +1,6 @@
 //Java_RPG
-//Alpha 1.0.01
-//Released 11/08/2012
+//Alpha 1.1.0
+//Released 11/09/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
 
@@ -25,6 +25,11 @@ public class Character {
 	private int locationX; //The x location of the player
 	private int locationY; //The y location of the player
 	private int weapon; //The weapon the player has
+	private int wood; //The amount of wood the player has
+	private int gold; //The amount of gold the player has
+	private int iron; //The amount of iron the player has
+	private boolean axe; //if the player has an axe
+	private boolean pick; //if the player has a pick axe
 
 	private final int LVL_XP[] = {100,500,1200,2500,5000,9000,15000,20000,25000}; //xp needed to get to the next level
 	private String charName;
@@ -42,9 +47,12 @@ public class Character {
 	}
 
 	public void saveAll() throws IOException {
-		login.saveStats(health, cHealth, mana, cMana, level, xp, str, dex, intel, clv, turns, locationX, locationY, weapon, hasMap);
+		login.saveStats(health, cHealth, mana, cMana, level, xp, str, dex, intel, clv, turns, locationX, locationY, weapon, hasMap, axe, pick, wood, gold, iron);
 	}
-
+	
+	/**
+	 * Refreshes the stats from the file
+	 */
 	private void getStats() {
 		health = login.getHealth();
 		cHealth = login.getCHealth();
@@ -62,12 +70,37 @@ public class Character {
 		locationY = login.getLocationY();
 		weapon = login.getWeapon();
 		hasMap = login.getMap();
+		axe = login.getAxe();
+		pick = login.getPick();
+		wood = login.getWood();
+		gold = login.getGold();
+		iron = login.getIron();
 	}
-	
+	/**
+	 * Sets that the player found a map		
+	 */
 	public void findMap() {
 		hasMap = true;
 	}
+	
+	/**
+	 * Sets that the player has an axe
+	 */
+	public void findAxe() {
+		axe = true;
+	}
+	
+	/**
+	 * Sets that the player has a pick axe
+	 */
+	public void findPick() {
+		pick = true;
+	}
 
+	/**
+	 * Returns the max health of the player
+	 * @return health - the max health of the player
+	 */
 	public int getHealth(){
 		getStats();
 		return health;
@@ -75,7 +108,7 @@ public class Character {
 
 	/**
 	 * Returns Current Health
-	 * @return Current Health - Current Health of Player
+	 * @return CHealth - Current Health of Player
 	 */
 	public int getCHealth(){
 		getStats();
@@ -84,7 +117,7 @@ public class Character {
 
 	/**
 	 * Retrieves Mana Value
-	 * @return Mana- The Maximum amount of mana
+	 * @return mana- The Maximum amount of mana
 	 */
 	public int getMana(){
 		getStats();
@@ -350,7 +383,62 @@ public class Character {
 	public boolean hasMap() {
 		return hasMap;
 	}
-
-
+	
+	/**
+	 * Retrieves whether or not the player has an axe
+	 * @return axe - if the player has an axe
+	 */
+	public boolean getAxe() {
+		return axe;
+	}
+	
+	/**
+	 * Retrieves whether or not the player has a pick axe
+	 * @return pick - if the player has a pick axe
+	 */
+	public boolean getPick() {
+		return pick;
+	}
+	
+	/**
+	 * Retrieves the amount of wood the player has
+	 * @return wood - the amount of wood the player has
+	 */
+	public int getWood() {
+		return wood;
+	}
+	
+	/**
+	 * Adds the amount of wood to the total amount of
+	 * wood the player has
+	 * @param aWood - the amount of wood to be added or subtracted
+	 * @throws IOException 
+	 */
+	public void setWood(int aWood) throws IOException {
+		wood += aWood;
+		saveAll();
+	}
+	
+	/**
+	 * Adds the amount of wood to the total amount of
+	 * wood the player has
+	 * @param aWood - the amount of wood to be added or subtracted
+	 * @throws IOException 
+	 */
+	public void setGold(int aGold) throws IOException {
+		gold += aGold;
+		saveAll();
+	}
+	
+	/**
+	 * Adds the amount of wood to the total amount of
+	 * wood the player has
+	 * @param aWood - the amount of wood to be added or subtracted
+	 * @throws IOException 
+	 */
+	public void setIron(int aIron) throws IOException {
+		iron += aIron;
+		saveAll();
+	}
 }
 
