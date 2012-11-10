@@ -52,10 +52,10 @@ public class Login{
 			H.pln("The minimum size is 10");
 			H.pln("The input, x, will create a map with the size (x,x).");
 			mapSize = H.inputInt();
-			if(mapSize < 7) {
-				mapSize = 7;
-				H.pln("The minimum map size is 7");
-				H.pln("Your mapSize has been changed to 7");
+			if(mapSize < 10) {
+				mapSize = 10;
+				H.pln("The minimum map size is 10");
+				H.pln("Your mapSize has been changed to 10");
 			}
 			System.out.println("No Character File Found");
 			System.out.println("Creating File");
