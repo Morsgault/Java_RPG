@@ -1,5 +1,5 @@
 //Java_RPG
-//Alpha 1.1.0
+//Alpha 1.1.01
 //Released 11/09/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
@@ -145,7 +145,7 @@ public class Event {
 			} else {
 				H.pln("All you find is stone :(");
 			}
-			
+			break;
 			
 		default:
 			H.pln("Cell read error - Event.java eventCalc()");

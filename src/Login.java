@@ -1,5 +1,5 @@
 //Java_RPG
-//Alpha 1.1.0
+//Alpha 1.1.01
 //Released 11/09/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
@@ -48,8 +48,9 @@ public class Login{
 			update();
 		}
 		else {
-			System.out.println("How Large would you like the map?");
-			System.out.println("The input, x, will create a map with the size (x,x).");
+			H.pln("How Large would you like the map?");
+			H.pln("The minimum size is 10");
+			H.pln("The input, x, will create a map with the size (x,x).");
 			mapSize = H.inputInt();
 			if(mapSize < 7) {
 				mapSize = 7;
