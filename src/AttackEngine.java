@@ -1,6 +1,6 @@
 //Java_RPG
-//Alpha 1.1.01
-//Released 11/09/2012
+//Alpha 1.2.0
+//Released 11/10/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
 
@@ -33,6 +33,7 @@ public class AttackEngine {
 	private Random elgen;
 	private Random engine;
 	private int helper;
+	
 	public AttackEngine(String charName) throws NumberFormatException, IOException{
 		player = new Character(charName);
 		elgen = new Random();
@@ -77,7 +78,7 @@ public class AttackEngine {
 					else{
 						helper = EC_HEALTH;
 						H.pln("Enemy lost "+helper+" health!");
-						EC_HEALTH = 0;
+						EC_HEALTH -= damage;
 					}
 				}
 				else{
@@ -105,7 +106,7 @@ public class AttackEngine {
 							else{
 								helper = EC_HEALTH;
 								H.pln("Enemy lost "+helper+" health!");
-								EC_HEALTH = 0;
+								EC_HEALTH -= damage;
 							}
 						}
 						if(plevel == 10){
@@ -132,8 +133,8 @@ public class AttackEngine {
 
 		}
 		if(EC_HEALTH <=0 && PC_HEALTH > 0){
-			player.addXP(((elevel)*100)-EC_HEALTH);
-			H.pln("You gained "+String.valueOf((((elevel)*100)-EC_HEALTH))+" XP!");
+			player.addXP(EC_HEALTH * (-1));
+			H.pln("You gained "+String.valueOf(EC_HEALTH * (-1))+" XP!");
 		}
 		if(flee){
 			player.addXP((EC_HEALTH)*(-1));

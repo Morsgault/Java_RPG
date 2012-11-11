@@ -1,6 +1,6 @@
 //Java_RPG
-//Alpha 1.1.01
-//Released 11/09/2012
+//Alpha 1.2.0
+//Released 11/10/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
 
@@ -28,6 +28,7 @@ public class Character {
 	private int wood; //The amount of wood the player has
 	private int gold; //The amount of gold the player has
 	private int iron; //The amount of iron the player has
+	private int stone; //The amount of stone the player has
 	private boolean axe; //if the player has an axe
 	private boolean pick; //if the player has a pick axe
 
@@ -47,13 +48,16 @@ public class Character {
 	}
 
 	public void saveAll() throws IOException {
-		login.saveStats(health, cHealth, mana, cMana, level, xp, str, dex, intel, clv, turns, locationX, locationY, weapon, hasMap, axe, pick, wood, gold, iron);
+		login.saveStats(health, cHealth, mana, cMana, level, xp, str, dex, intel, clv, turns, locationX, locationY, weapon, hasMap, axe, pick, wood, gold, iron, stone);
 	}
 	
 	/**
 	 * Refreshes the stats from the file
+	 * @throws IOException 
+	 * @throws NumberFormatException 
 	 */
-	private void getStats() {
+	private void getStats() throws NumberFormatException, IOException {
+		login.update();
 		health = login.getHealth();
 		cHealth = login.getCHealth();
 		mana = login.getMana();
@@ -75,6 +79,7 @@ public class Character {
 		wood = login.getWood();
 		gold = login.getGold();
 		iron = login.getIron();
+		stone = login.getStone();
 	}
 	/**
 	 * Sets that the player found a map		
@@ -100,135 +105,165 @@ public class Character {
 	/**
 	 * Returns the max health of the player
 	 * @return health - the max health of the player
+	 * @throws IOException 
+	 * @throws NumberFormatException 
 	 */
-	public int getHealth(){
-		getStats();
+	public int getHealth() throws NumberFormatException, IOException{
+		
 		return health;
 	}
 
 	/**
 	 * Returns Current Health
 	 * @return CHealth - Current Health of Player
+	 * @throws IOException 
+	 * @throws NumberFormatException 
 	 */
-	public int getCHealth(){
-		getStats();
+	public int getCHealth() throws NumberFormatException, IOException{
+		
 		return cHealth;
 	}
 
 	/**
 	 * Retrieves Mana Value
 	 * @return mana- The Maximum amount of mana
+	 * @throws IOException 
+	 * @throws NumberFormatException 
 	 */
-	public int getMana(){
-		getStats();
+	public int getMana() throws NumberFormatException, IOException{
+		
 		return mana;
 	}
 
 	/**
 	 * Retrieves Current Mana Value
 	 * @return Current Mana - The Players Current Amount Of Mana
+	 * @throws IOException 
+	 * @throws NumberFormatException 
 	 */
-	public int getCMana(){
-		getStats();
+	public int getCMana() throws NumberFormatException, IOException{
+		
 		return cMana;
 	}
 
 	/**
 	 * Retrieves the Players Level
 	 * @return Level- The Current Players Level
+	 * @throws IOException 
+	 * @throws NumberFormatException 
 	 */
-	public int getLevel(){
-		getStats();
+	public int getLevel() throws NumberFormatException, IOException{
+		
 		return level;
 	}
 
 	/**
 	 * Retrieves Experience Points
 	 * @return Experience - How close you are to the next level
+	 * @throws IOException 
+	 * @throws NumberFormatException 
 	 */
-	public int getXp(){
-		getStats();
+	public int getXp() throws NumberFormatException, IOException{
+		
 		return xp;
 	}
 
 	/**
 	 * Retrieves Strength Rating
 	 * @return Strength - The Strength Level
+	 * @throws IOException 
+	 * @throws NumberFormatException 
 	 */
-	public int getStr(){
-		getStats();
+	public int getStr() throws NumberFormatException, IOException{
+		
 		return str;
 	}
 
 	/**
 	 * Retrieves Dexterity Rating
 	 * @return Dexterity - Retrieves Dexterity Rating
+	 * @throws IOException 
+	 * @throws NumberFormatException 
 	 */
-	public int getDex(){
-		getStats();
+	public int getDex() throws NumberFormatException, IOException{
+		
 		return dex;
 	}
 
 	/**
 	 * Retrieves Intelligence
 	 * @return Intel - The Intelligence rating
+	 * @throws IOException 
+	 * @throws NumberFormatException 
 	 */
-	public int getIntel(){
-		getStats();
+	public int getIntel() throws NumberFormatException, IOException{
+		
 		return intel;
 	}
 
 	/**
 	 * Retrieves the last time the player visited the castle
 	 * @return Castle Last Visited- The last turn a player was at the castle
+	 * @throws IOException 
+	 * @throws NumberFormatException 
 	 */
-	public int getCLV(){
-		getStats();
+	public int getCLV() throws NumberFormatException, IOException{
+		
 		return clv;
 	}
 
 	/**
 	 * Retrieves the amount of turns a player has went through
 	 * @return Turns - The amount of turns
+	 * @throws IOException 
+	 * @throws NumberFormatException 
 	 */
-	public int getTurns(){
-		getStats();
+	public int getTurns() throws NumberFormatException, IOException{
+		
 		return turns;
 	}
 
 	/**
 	 * Retrieves the size of the map
 	 * @return mapSize - the size of the map
+	 * @throws IOException 
+	 * @throws NumberFormatException 
 	 */
-	public int getMapSize(){
-		getStats();
+	public int getMapSize() throws NumberFormatException, IOException{
+		
 		return mapSize;
 	}
 
 	/**
 	 * Retrieves the X start location
 	 * @return locationX - the X location
+	 * @throws IOException 
+	 * @throws NumberFormatException 
 	 */
-	public int getLocationX() {
-		getStats();
+	public int getLocationX() throws NumberFormatException, IOException {
+		
 		return locationX;
 	}
 
 	/**
 	 * Retrieves the Y start location
 	 * @return locationY - the Y location
+	 * @throws IOException 
+	 * @throws NumberFormatException 
 	 */
-	public int getLocationY() {
-		getStats();
+	public int getLocationY() throws NumberFormatException, IOException {
+		
 		return locationY;
 	}
 
 	/**
 	 * Retrieves the weapon the player has
 	 * @return weapon - the weapon the player has
+	 * @throws IOException 
+	 * @throws NumberFormatException 
 	 */
-	public int getWeapon() {
-		getStats();
+	public int getWeapon() throws NumberFormatException, IOException {
+		
 		return weapon;
 	}
 
@@ -294,7 +329,7 @@ public class Character {
 	 * @throws IOException
 	 */
 	public void addXP(int addXP) throws IOException {
-		xp = xp + addXP;
+		xp += addXP;
 		if(xp >= LVL_XP[level]){
 			xp-=LVL_XP[level];
 			addLevel();
@@ -431,14 +466,64 @@ public class Character {
 	}
 	
 	/**
-	 * Adds the amount of wood to the total amount of
-	 * wood the player has
-	 * @param aWood - the amount of wood to be added or subtracted
+	 * Adds the amount of iron to the total amount of
+	 * iron the player has
+	 * @param aIron - the amount of iron to be added or subtracted
 	 * @throws IOException 
 	 */
 	public void setIron(int aIron) throws IOException {
 		iron += aIron;
 		saveAll();
+	}
+	
+	/**
+	 * Adds the amount of iron to the total amount of
+	 * iron the player has
+	 * @param aIron - the amount of iron to be added or subtracted
+	 * @throws IOException 
+	 */
+	public void setStone(int aStone) throws IOException {
+		stone += aStone;
+		saveAll();
+	}
+	
+	/**
+	 * Resets the player's inventory
+	 * @throws IOException 
+	 */
+	public void resetInv() throws IOException {
+		weapon = 0;
+		wood = 0;
+		gold = 0;
+		iron = 0;
+		stone = 0;
+		axe = false;
+		pick = false;
+		hasMap = false;
+		saveAll();
+	}
+	
+	/**
+	 * Retrieves the amount of gold the player has
+	 * @return gold - the amount of gold the player has
+	 */
+	public int getGold() {
+		return gold;
+	}
+	/**
+	 *Retrieves the amount of iron the player has
+	 * @return iron - the amount of iron the player has
+	 */
+	public int getIron() {
+		return iron;
+	}
+	
+	/**
+	 * Retrieves the amount of stone the player has
+	 * @return stone - the amount of stone the player has
+	 */
+	public int getStone() {
+		return stone;
 	}
 }
 

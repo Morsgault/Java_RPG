@@ -1,6 +1,6 @@
 //Java_RPG
-//Alpha 1.1.01
-//Released 11/09/2012
+//Alpha 1.2.0
+//Released 11/10/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
 
@@ -32,6 +32,7 @@ public class Login{
 	private int wood; //The amount of wood the player has
 	private int gold; //The amount of gold the player has
 	private int iron; //The amount of iron the player has
+	private int stone; //The amount of stone the player has
 	private boolean axe; //if the player has an axe
 	private boolean pick; //it the player has a pick axe
 	private boolean map; //if the player has a map
@@ -119,6 +120,7 @@ public class Login{
 			wood = 0;
 			gold = 0;
 			iron = 0;
+			stone = 0;
 			axe = false;
 			pick = false;
 			map = false;
@@ -130,6 +132,8 @@ public class Login{
 			inv.write(Integer.toString(gold));
 			inv.newLine();
 			inv.write(Integer.toString(iron));
+			inv.newLine();
+			inv.write(Integer.toString(stone));
 			inv.newLine();
 			inv.write(Boolean.toString(axe));
 			inv.newLine();
@@ -153,7 +157,7 @@ public class Login{
 	 * Saves the current stats
 	 * @throws IOException
 	 */
-	public void saveStats(int health1, int cHealth1, int mana1, int cMana1, int level1, int xp1, int str1, int dex1, int intel1, int clv1, int turns1, int x, int y, int weapon1, boolean map1, boolean axe1, boolean pick1, int wood1, int gold1, int iron1) throws IOException{
+	public void saveStats(int health1, int cHealth1, int mana1, int cMana1, int level1, int xp1, int str1, int dex1, int intel1, int clv1, int turns1, int x, int y, int weapon1, boolean map1, boolean axe1, boolean pick1, int wood1, int gold1, int iron1, int stone1) throws IOException{
 		health = health1;
 		cHealth = cHealth1;
 		mana = mana1;
@@ -174,6 +178,7 @@ public class Login{
 		wood = wood1;
 		gold = gold1;
 		iron = iron1;
+		stone = stone1;
 
 		File oldSave = new File(pName+".plr");
 		oldSave.delete();
@@ -226,6 +231,8 @@ public class Login{
 		saveInv.newLine();
 		saveInv.write(Integer.toString(iron));
 		saveInv.newLine();
+		saveInv.write(Integer.toString(stone));
+		saveInv.newLine();
 		saveInv.write(Boolean.toString(axe));
 		saveInv.newLine();
 		saveInv.write(Boolean.toString(pick));
@@ -259,6 +266,7 @@ public class Login{
 		wood = Integer.parseInt(getInv.readLine());
 		gold = Integer.parseInt(getInv.readLine());
 		iron = Integer.parseInt(getInv.readLine());
+		stone = Integer.parseInt(getInv.readLine());
 		axe = Boolean.parseBoolean(getInv.readLine());
 		pick = Boolean.parseBoolean(getInv.readLine());
 		map = Boolean.parseBoolean(getInv.readLine());
@@ -430,6 +438,14 @@ public class Login{
 	 */
 	public int getIron() {
 		return iron;
+	}
+	
+	/**
+	 * Retrieves the amount of stone the player has
+	 * @return stone - the amount of stone the player has
+	 */
+	public int getStone() {
+		return stone;
 	}
 	
 }

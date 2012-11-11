@@ -1,6 +1,6 @@
 //Java_RPG
-//Alpha 1.1.01
-//Released 11/09/2012
+//Alpha 1.2.0
+//Released 11/10/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
 
@@ -15,6 +15,7 @@ public class Event {
 	private AttackEngine encounter;
 	private int event; // Type of event
 	private Character player;
+	private Crafting craft;
 	private String playerName;
 	private Location location;
 	private int x;
@@ -27,6 +28,7 @@ public class Event {
 		item = 0;
 		encounter = new AttackEngine(charName);
 		player = new Character(charName);
+		craft = new Crafting(charName);
 		leave = false;
 		alive = true;
 		playerName = charName;
@@ -143,7 +145,8 @@ public class Event {
 				H.pln("You found iron");
 				item = 3;
 			} else {
-				H.pln("All you find is stone :(");
+				H.pln("All you find is stone.");
+				item = 4;
 			}
 			break;
 			
@@ -180,8 +183,9 @@ public class Event {
 		y = location.getY();
 		player.setLocation(x, y);
 		player.saveAll();
-		player.setCHealth(100);
+		player.setCHealth(player.getHealth());
 		player.resetXP();
+		player.resetInv();
 		alive = false;
 	}
 	public boolean isAlive() {
@@ -190,7 +194,7 @@ public class Event {
 	public void revive() {
 		alive = true;
 	}
-	public void showStats() {
+	public void showStats() throws NumberFormatException, IOException {
 		H.pln("Current Health - "+player.getCHealth()+"/"+player.getHealth());
 		H.pln("Current XP - "+player.getXp());
 		H.pln("Current Level - "+player.getLevel());
@@ -201,18 +205,44 @@ public class Event {
 			H.pln("There is nothing for you to take");
 			break;
 		case 1:
-			H.pln("You took 5 wood.");
-			player.setWood(5);
+			int woodAmount = e_calc.nextInt(9) + 1;
+			if(player.getAxe()) {
+			H.pln("You took "+woodAmount+" wood.");
+			player.setWood(woodAmount);
+			} else {
+				H.pln("You only could take 1 wood because");
+				H.pln("you don't have an axe");
+				player.setWood(1);
+			}
 			break;
 		case 2:
 			int goldAmount = e_calc.nextInt(4) + 1;
-			H.pln("You took "+goldAmount+" gold.");
-			player.setGold(goldAmount);
+			if(player.getPick()) {
+				H.pln("You took "+goldAmount+" gold.");
+				player.setGold(goldAmount);
+			} else {
+				H.pln("You do not have a pick axe");
+			}
 			break;
 		case 3:
 			int ironAmount = e_calc.nextInt(6) + 1;
-			H.pln("You took "+ironAmount+" iron.");
-			player.setIron(ironAmount);
+			if(player.getPick()) {
+				H.pln("You took "+ironAmount+" iron.");
+				player.setIron(ironAmount);
+			} else {
+				H.pln("You do not have a pick axe");
+			}
+			break;
+		case 4:
+			int stoneAmount = e_calc.nextInt(6) + 1;
+			if(player.getPick()) {
+				H.pln("You took "+stoneAmount+" stone");
+				player.setStone(stoneAmount);
+			} else {
+				H.pln("You only could take 1 stone because");
+				H.pln("you don't have a pick axe");
+				player.setStone(1);
+			}
 			break;
 		default:
 			H.pln("Error - Event.java take() method");
@@ -221,6 +251,27 @@ public class Event {
 
 		}
 	}
-
+	public void craft() throws NumberFormatException, IOException {
+		craft.craft();
+		player.update();
+	}
+	public void showInv() {
+		if(player.getWood() > 0)
+			H.pln("wood - "+player.getWood());
+		if(player.getStone() > 0)
+			H.pln("stone - "+player.getStone());
+		if(player.getIron() > 0)
+			H.pln("iron - "+player.getIron());
+		if(player.getGold() > 0)
+			H.pln("gold - "+player.getGold());
+		if(player.getAxe())
+			H.pln("axe");
+		if(player.getPick())
+			H.pln("pickaxe");
+		if(player.hasMap())
+			H.pln("map");
+		if(player.getWood() < 1 && player.getIron() < 1 && player.getGold() < 1 && player.getStone() < 1 && !player.getAxe() && !player.getPick() && !player.hasMap())
+			H.pln("You do not have anything in your inventory");
+	}
 }
 
