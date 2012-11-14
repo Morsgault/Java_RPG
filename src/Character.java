@@ -4,7 +4,6 @@
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
 
-package txtrpg;
 import java.io.IOException;
 
 
@@ -27,6 +26,7 @@ public class Character {
 	private int weapon; //The weapon the player has
 	private int wood; //The amount of wood the player has
 	private int gold; //The amount of gold the player has
+	private int hpot; // The amount of helath potions a player has
 	private int iron; //The amount of iron the player has
 	private int stone; //The amount of stone the player has
 	private boolean axe; //if the player has an axe
@@ -80,6 +80,7 @@ public class Character {
 		gold = login.getGold();
 		iron = login.getIron();
 		stone = login.getStone();
+		hpot = login.getHpot();
 	}
 	/**
 	 * Sets that the player found a map		
@@ -211,6 +212,10 @@ public class Character {
 		
 		return clv;
 	}
+	
+	public int getHPot(){
+		return hpot;
+	}
 
 	/**
 	 * Retrieves the amount of turns a player has went through
@@ -292,6 +297,16 @@ public class Character {
 		saveAll();
 	}
 
+	public void setHpot(int hp) throws IOException{
+		hpot+=hp;
+		saveAll();
+	}
+	
+	
+	public void setWeapon(int sweapon) throws IOException{
+		weapon=sweapon;
+		saveAll();
+	}
 	/**
 	 * Sets the current level
 	 * @param setLevel - the current level

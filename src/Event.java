@@ -4,7 +4,7 @@
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
 
-package txtrpg;
+
 import java.io.IOException;
 import java.util.Random;
 
@@ -16,6 +16,7 @@ public class Event {
 	private int event; // Type of event
 	private Character player;
 	private Crafting craft;
+	private Shop plrs;
 	private String playerName;
 	private Location location;
 	private int x;
@@ -31,6 +32,7 @@ public class Event {
 		craft = new Crafting(charName);
 		leave = false;
 		alive = true;
+		plrs = new Shop(charName);
 		playerName = charName;
 		x = player.getLocationX();
 		y = player.getLocationY();
@@ -129,6 +131,7 @@ public class Event {
 
 		case 7:
 			H.pln("You have entered a town");
+			plrs.shop();
 			break;
 		case 8:
 			H.pln("YOU HACKER!");
@@ -254,6 +257,17 @@ public class Event {
 	public void craft() throws NumberFormatException, IOException {
 		craft.craft();
 		player.update();
+	}
+	
+	public void drink() throws IOException{
+		if(player.getHPot()>=1){
+			H.pln("Your heath has been restored");
+			player.setHpot(-1);
+			player.setCHealth(5000000);
+		}
+		else{
+			H.pln("You have no Health Potions to Drink");
+		}
 	}
 	public void showInv() {
 		if(player.getWood() > 0)

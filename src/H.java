@@ -4,7 +4,6 @@
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
 
-package txtrpg;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 public class H {

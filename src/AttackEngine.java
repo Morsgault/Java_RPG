@@ -4,7 +4,7 @@
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
 
-package txtrpg;
+
 import java.io.IOException;
 import java.util.Random;
 public class AttackEngine {
@@ -18,6 +18,7 @@ public class AttackEngine {
 	 */
 	private int plevel; //Player Level
 	private int elevel; //Enemy Level
+	private double wD[] = {1,1.1,1.3,1.5,3};
 	private boolean E_ALIVE; //Enemy is alive
 	private boolean P_ALIVE; //Player is alive
 	private int E_HEALTH; //Enemy's Max Health
@@ -48,7 +49,7 @@ public class AttackEngine {
 		plevel = player.getLevel();
 		elevel = elgen.nextInt(2)+(plevel-1);
 		if(elevel !=-1){
-			health = 70 + (elevel + 1) * 30;
+			health = 70 + (elevel) * 30;
 		}
 		else{
 			health = 70;
@@ -70,7 +71,7 @@ public class AttackEngine {
 			switch(choice){
 			case 1:
 				if(engine.nextInt(99)+1 <= 95){
-					damage = engine.nextInt(P_MAX_DAMAGE[plevel]);
+					damage = (int) ((engine.nextInt(P_MAX_DAMAGE[plevel]))*wD[player.getWeapon()]);
 					if(damage<=EC_HEALTH){
 						H.pln("Enemy lost "+damage+" health!");
 						EC_HEALTH-=damage;
@@ -83,7 +84,7 @@ public class AttackEngine {
 				}
 				else{
 					if(plevel<=8){
-						damage = engine.nextInt(P_MAX_DAMAGE[plevel+2]);
+						damage = (int) (engine.nextInt(P_MAX_DAMAGE[plevel+2])*wD[player.getWeapon()]);
 						H.pln("Critical Hit!");
 						if(damage<=EC_HEALTH){
 						H.pln("Enemy lost "+damage+" health!");
@@ -97,7 +98,7 @@ public class AttackEngine {
 					}
 					else{
 						if(plevel == 9){
-							damage = engine.nextInt(P_MAX_DAMAGE[plevel+1]);
+							damage = (int) (engine.nextInt(P_MAX_DAMAGE[plevel+1])*wD[player.getWeapon()]);
 							H.pln("Critical Hit!");
 							if(damage<=EC_HEALTH){
 								H.pln("Enemy lost "+damage+" health!");

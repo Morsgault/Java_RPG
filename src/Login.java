@@ -4,7 +4,6 @@
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
 
-package txtrpg;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -36,6 +35,7 @@ public class Login{
 	private boolean axe; //if the player has an axe
 	private boolean pick; //it the player has a pick axe
 	private boolean map; //if the player has a map
+	private int hpot;//The players health potions
 
 	/**
 	 * Logins in a character
@@ -117,6 +117,7 @@ public class Login{
 			BufferedWriter inv = new BufferedWriter(new FileWriter(newInv));
 			
 			weapon = 0;
+			hpot = 0;
 			wood = 0;
 			gold = 0;
 			iron = 0;
@@ -127,6 +128,7 @@ public class Login{
 			
 			inv.write(Integer.toString(weapon));
 			inv.newLine();
+			inv.write(Integer.toString(hpot));
 			inv.write(Integer.toString(wood));
 			inv.newLine();
 			inv.write(Integer.toString(gold));
@@ -383,6 +385,10 @@ public class Login{
 	 */
 	public int getLocationX() {
 		return locationX;
+	}
+	
+	public int getHpot(){
+		return hpot;
 	}
 
 	/**

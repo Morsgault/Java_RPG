@@ -4,7 +4,6 @@
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
 
-package txtrpg;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;

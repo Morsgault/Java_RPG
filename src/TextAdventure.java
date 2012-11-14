@@ -4,7 +4,7 @@
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
 
-package txtrpg;
+
 import java.io.IOException;
 
 public class TextAdventure {
@@ -120,7 +120,12 @@ public class TextAdventure {
 							H.pln("You are dead. Type respawn to revive");
 							move = true;
 						}
-					} else {
+						
+					} 
+					else if(input2.equals("drink")){
+						event.drink();
+					}
+					else {
 						System.out.println("Improper Input");
 					}
 				}
