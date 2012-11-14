@@ -1,6 +1,6 @@
 //Java_RPG
-//Alpha 1.2.0
-//Released 11/10/2012
+//Alpha PreRelease 1.3.0
+//Released 11/14/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
 
@@ -48,7 +48,7 @@ public class Character {
 	}
 
 	public void saveAll() throws IOException {
-		login.saveStats(health, cHealth, mana, cMana, level, xp, str, dex, intel, clv, turns, locationX, locationY, weapon, hasMap, axe, pick, wood, gold, iron, stone);
+		login.saveStats(health, cHealth, mana, cMana, level, xp, str, dex, intel, clv, turns, locationX, locationY, weapon, hasMap, axe, pick, wood, gold, iron, stone, hpot);
 	}
 	
 	/**

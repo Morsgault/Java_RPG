@@ -1,6 +1,6 @@
 //Java_RPG
-//Alpha 1.2.0
-//Released 11/10/2012
+//Alpha PreRelease 1.3.0
+//Released 11/14/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
 
@@ -129,6 +129,7 @@ public class Login{
 			inv.write(Integer.toString(weapon));
 			inv.newLine();
 			inv.write(Integer.toString(hpot));
+			inv.newLine();
 			inv.write(Integer.toString(wood));
 			inv.newLine();
 			inv.write(Integer.toString(gold));
@@ -159,7 +160,7 @@ public class Login{
 	 * Saves the current stats
 	 * @throws IOException
 	 */
-	public void saveStats(int health1, int cHealth1, int mana1, int cMana1, int level1, int xp1, int str1, int dex1, int intel1, int clv1, int turns1, int x, int y, int weapon1, boolean map1, boolean axe1, boolean pick1, int wood1, int gold1, int iron1, int stone1) throws IOException{
+	public void saveStats(int health1, int cHealth1, int mana1, int cMana1, int level1, int xp1, int str1, int dex1, int intel1, int clv1, int turns1, int x, int y, int weapon1, boolean map1, boolean axe1, boolean pick1, int wood1, int gold1, int iron1, int stone1, int hpot1) throws IOException{
 		health = health1;
 		cHealth = cHealth1;
 		mana = mana1;
@@ -181,6 +182,7 @@ public class Login{
 		gold = gold1;
 		iron = iron1;
 		stone = stone1;
+		hpot = hpot1;
 
 		File oldSave = new File(pName+".plr");
 		oldSave.delete();
@@ -227,6 +229,8 @@ public class Login{
 		
 		saveInv.write(Integer.toString(weapon));
 		saveInv.newLine();
+		saveInv.write(Integer.toString(hpot));
+		saveInv.newLine();
 		saveInv.write(Integer.toString(wood));
 		saveInv.newLine();
 		saveInv.write(Integer.toString(gold));
@@ -265,6 +269,7 @@ public class Login{
 		BufferedReader getInv = new BufferedReader(new FileReader(pName+".inv"));
 		
 		weapon = Integer.parseInt(getInv.readLine());
+		hpot = Integer.parseInt(getInv.readLine());
 		wood = Integer.parseInt(getInv.readLine());
 		gold = Integer.parseInt(getInv.readLine());
 		iron = Integer.parseInt(getInv.readLine());
@@ -387,6 +392,10 @@ public class Login{
 		return locationX;
 	}
 	
+	/**
+	 * Retrieves how many health potions the player has
+	 * @return hpot - the number of potions the player has
+	 */
 	public int getHpot(){
 		return hpot;
 	}

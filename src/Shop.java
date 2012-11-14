@@ -1,16 +1,21 @@
-import java.io.IOException;
+//Java_RPG
+//Alpha PreRelease 1.3.0
+//Released 11/14/2012
+//©2012 Ryan Cicchiello & Jason Holman
+//See LICENCE for details
 
+import java.io.IOException;
 
 public class Shop {
 	private boolean leave;
 	private int response;
 	private Character player;
-	
+
 	public Shop(String charName) throws NumberFormatException, IOException{
 		player = new Character(charName);
 		leave = false;
 	}
-	
+
 	public void shop() throws IOException{
 		H.pln("Welcome to the Shop!");
 		while(!leave){
@@ -37,8 +42,8 @@ public class Shop {
 				else{
 					H.pln("Not enought gold.");
 				}
-			break;
-			
+				break;
+
 			case 2:
 				if(player.getGold()>=50){
 					H.pln("You have bought 1 Iron");
@@ -48,8 +53,8 @@ public class Shop {
 				else{
 					H.pln("Not enought gold.");
 				}
-			break;
-			
+				break;
+
 			case 3:
 				if(player.getGold()>=100){
 					H.pln("You have bought a Pickaxe!");
@@ -59,8 +64,8 @@ public class Shop {
 				else{
 					H.pln("Not enought gold.");
 				}
-			break;
-			
+				break;
+
 			case 4:
 				if(player.getGold()>=100){
 					H.pln("You have bought an Axe!");
@@ -70,8 +75,8 @@ public class Shop {
 				else{
 					H.pln("Not enought gold.");
 				}
-			break;
-			
+				break;
+
 			case 5:
 				if(player.getGold()>=150){
 					H.pln("You have bought Health Potion!");
@@ -82,7 +87,7 @@ public class Shop {
 					H.pln("Not enought gold.");
 				}
 				break;
-				
+
 			case 6:
 				if(player.getGold()>=150){
 					H.pln("You have bought a Wooden Sword!");
@@ -92,45 +97,47 @@ public class Shop {
 				else{
 					H.pln("Not enought gold.");
 				}
-		
-			break;
-			
-			
-		case 7:
-			if(player.getGold()>=150){
-				H.pln("You have bought an Iron Sword!");
-				player.setGold(-200);
-				player.setWeapon(2);
-			}
-			else{
-				H.pln("Not enought gold.");
-			}
-	
-		break;
-		
-		case 8:
-			if(player.getGold()>=150){
-				H.pln("You have bought a Gold Sword!");
-				player.setGold(-300);
-				player.setWeapon(3);
-			}
-			else{
-				H.pln("Not enought gold.");
-			}
-			
-		case 9:
-			H.pln("This item is currently Out of Stock");
-	
-		break;
-		
-		case 10:
-			H.pln("Sorry this is not a fully developed feature yet");
-		
-		break;
-		
-		case 11:
-			H.pln("Goodbye");
-			leave = true;
+
+				break;
+
+
+			case 7:
+				if(player.getGold()>=150){
+					H.pln("You have bought an Iron Sword!");
+					player.setGold(-200);
+					player.setWeapon(2);
+				}
+				else{
+					H.pln("Not enought gold.");
+				}
+
+				break;
+
+			case 8:
+				if(player.getGold()>=150){
+					H.pln("You have bought a Gold Sword!");
+					player.setGold(-300);
+					player.setWeapon(3);
+				}
+				else{
+					H.pln("Not enought gold.");
+				}
+
+			case 9:
+				H.pln("This item is currently Out of Stock");
+
+				break;
+
+			case 10:
+				H.pln("Sorry this is not a fully developed feature yet");
+
+				break;
+
+			default:
+				H.pln("Goodbye");
+				leave = true;
+				player.saveAll();
+				break;
 			}
 		}
 	}

@@ -1,9 +1,8 @@
 //Java_RPG
-//Alpha 1.2.0
-//Released 11/10/2012
+//Alpha PreRelease 1.3.0
+//Released 11/14/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
-
 
 
 import java.io.IOException;

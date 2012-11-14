@@ -1,6 +1,6 @@
 //Java_RPG
-//Alpha 1.2.0
-//Released 11/09/2012
+//Alpha PreRelease 1.3.0
+//Released 11/14/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
 
@@ -121,11 +121,9 @@ public class TextAdventure {
 							move = true;
 						}
 						
-					} 
-					else if(input2.equals("drink")){
+					} else if(input2.equals("drink")) {
 						event.drink();
-					}
-					else {
+					} else {
 						System.out.println("Improper Input");
 					}
 				}
