@@ -1,5 +1,5 @@
 //Java_RPG
-//Alpha 1.3.0
+//Alpha Pre-Release 1.3.5
 //Released 11/14/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
@@ -20,16 +20,17 @@ public class Shop {
 		H.pln("Welcome to the Shop!");
 		while(!leave){
 			H.pln("Type the number next to the item to buy it.");
-			H.pln("1- Wood(4)...50");
-			H.pln("2- Iron......50");
-			H.pln("3- Pickaxe...100");
-			H.pln("4- Axe.......100");
-			H.pln("5- Health P..150");
-			H.pln("6- Wood Sword.150");
-			H.pln("7- Iron Sword.200");
-			H.pln("8- Gold Sword.300");
-			H.pln("9- Upgrade Map.300");
-			H.pln("Press 10 if you would like to learn more about an object");
+			H.pln("1- Wood(4).....50");
+			H.pln("2- Iron........50");
+			H.pln("3- Pickaxe.....100");
+			H.pln("4- Axe.........100");
+			H.pln("5- Health P....150");
+			H.pln("6- Wood Sword..150");
+			H.pln("7- Iron Sword..200");
+			H.pln("8- Gold Sword..300");
+			H.pln("9- Map.........300");
+			H.pln("10- Upgrade Map.300");
+			H.pln("Press 11 if you would like to learn more about an object");
 			H.pln("Press any other number to leave");
 			response = H.inputInt();
 			switch(response){
@@ -124,11 +125,29 @@ public class Shop {
 				}
 
 			case 9:
-				H.pln("This item is currently Out of Stock");
+				if(player.getGold() >= 300 && player.getMap() == 0) {
+					H.pln("You have bought a map");
+				} else if(player.getMap() > 0) {
+					H.pln("You already have a map.");
+				} else {
+					H.pln("Not enought gold.");
+				}
 
 				break;
 
 			case 10:
+				if(player.getGold() >= 300 && player.getMap() == 1) {
+					H.pln("Your map has been upgraded");
+				} else if(player.getMap() == 0) {
+					H.pln("You do not have a map to upgrade.");
+				} else if(player.getMap() == 3) {
+					H.pln("You already have an upgraded map.");
+				} else {
+					H.pln("You do not have enough gold");
+				}
+				break;
+				
+			case 11:
 				H.pln("Sorry this is not a fully developed feature yet");
 
 				break;

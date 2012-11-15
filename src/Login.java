@@ -1,5 +1,5 @@
 //Java_RPG
-//Alpha 1.3.0
+//Alpha Pre-Release 1.3.5
 //Released 11/14/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
@@ -34,7 +34,7 @@ public class Login{
 	private int stone; //The amount of stone the player has
 	private boolean axe; //if the player has an axe
 	private boolean pick; //it the player has a pick axe
-	private boolean map; //if the player has a map
+	private int map; //if the player has a map
 	private int hpot;//The players health potions
 
 	/**
@@ -124,7 +124,7 @@ public class Login{
 			stone = 0;
 			axe = false;
 			pick = false;
-			map = false;
+			map = 0;
 			
 			inv.write(Integer.toString(weapon));
 			inv.newLine();
@@ -142,7 +142,7 @@ public class Login{
 			inv.newLine();
 			inv.write(Boolean.toString(pick));
 			inv.newLine();
-			inv.write(Boolean.toString(map));
+			inv.write(Integer.toString(map));
 			inv.close();
 		}
 	}
@@ -160,7 +160,7 @@ public class Login{
 	 * Saves the current stats
 	 * @throws IOException
 	 */
-	public void saveStats(int health1, int cHealth1, int mana1, int cMana1, int level1, int xp1, int str1, int dex1, int intel1, int clv1, int turns1, int x, int y, int weapon1, boolean map1, boolean axe1, boolean pick1, int wood1, int gold1, int iron1, int stone1, int hpot1) throws IOException{
+	public void saveStats(int health1, int cHealth1, int mana1, int cMana1, int level1, int xp1, int str1, int dex1, int intel1, int clv1, int turns1, int x, int y, int weapon1, int map1, boolean axe1, boolean pick1, int wood1, int gold1, int iron1, int stone1, int hpot1) throws IOException{
 		health = health1;
 		cHealth = cHealth1;
 		mana = mana1;
@@ -243,7 +243,7 @@ public class Login{
 		saveInv.newLine();
 		saveInv.write(Boolean.toString(pick));
 		saveInv.newLine();
-		saveInv.write(Boolean.toString(map));
+		saveInv.write(Integer.toString(map));
 		saveInv.close();
 		
 	}
@@ -276,7 +276,7 @@ public class Login{
 		stone = Integer.parseInt(getInv.readLine());
 		axe = Boolean.parseBoolean(getInv.readLine());
 		pick = Boolean.parseBoolean(getInv.readLine());
-		map = Boolean.parseBoolean(getInv.readLine());
+		map = Integer.parseInt(getInv.readLine());
 		getInv.close();
 	}
 	
@@ -284,7 +284,7 @@ public class Login{
 	 * returns whether the player has a map
 	 * @return map - If player has a map
 	 */
-	public boolean getMap() {
+	public int getMap() {
 		return map;
 	}
 	

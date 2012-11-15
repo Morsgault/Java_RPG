@@ -1,5 +1,5 @@
 //Java_RPG
-//Alpha 1.3.0
+//Alpha Pre-Release 1.3.5
 //Released 11/14/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
@@ -34,7 +34,7 @@ public class Character {
 
 	private final int LVL_XP[] = {100,500,1200,2500,5000,9000,15000,20000,25000}; //xp needed to get to the next level
 	private String charName;
-	private boolean hasMap;
+	private int map;
 	Login login;
 
 	public Character(String name) throws NumberFormatException, IOException {
@@ -48,7 +48,7 @@ public class Character {
 	}
 
 	public void saveAll() throws IOException {
-		login.saveStats(health, cHealth, mana, cMana, level, xp, str, dex, intel, clv, turns, locationX, locationY, weapon, hasMap, axe, pick, wood, gold, iron, stone, hpot);
+		login.saveStats(health, cHealth, mana, cMana, level, xp, str, dex, intel, clv, turns, locationX, locationY, weapon, map, axe, pick, wood, gold, iron, stone, hpot);
 	}
 	
 	/**
@@ -73,7 +73,7 @@ public class Character {
 		locationX = login.getLocationX();
 		locationY = login.getLocationY();
 		weapon = login.getWeapon();
-		hasMap = login.getMap();
+		map = login.getMap();
 		axe = login.getAxe();
 		pick = login.getPick();
 		wood = login.getWood();
@@ -86,7 +86,7 @@ public class Character {
 	 * Sets that the player found a map		
 	 */
 	public void findMap() {
-		hasMap = true;
+		map = 1;
 	}
 	
 	/**
@@ -430,8 +430,8 @@ public class Character {
 	 * Tells if the player has the map
 	 * @return hasMap - if the player has a map
 	 */
-	public boolean hasMap() {
-		return hasMap;
+	public int getMap() {
+		return map;
 	}
 	
 	/**
@@ -508,13 +508,14 @@ public class Character {
 	 */
 	public void resetInv() throws IOException {
 		weapon = 0;
+		hpot = 0;
 		wood = 0;
 		gold = 0;
 		iron = 0;
 		stone = 0;
 		axe = false;
 		pick = false;
-		hasMap = false;
+		map = 0;
 		saveAll();
 	}
 	
