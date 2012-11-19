@@ -1,6 +1,6 @@
 //Java_RPG
-//Alpha 1.3.0
-//Released 11/14/2012
+//Alpha Pre-Release 1.3.6
+//Released 11/19/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
 
@@ -24,12 +24,14 @@ public class Event {
 	private int item;
 	private boolean leave;
 	private boolean alive;
+	private Build build;
 
 	public Event(String charName) throws NumberFormatException, IOException {
 		item = 0;
 		encounter = new AttackEngine(charName);
 		player = new Character(charName);
 		craft = new Crafting(charName);
+		build = new Build(charName);
 		leave = false;
 		alive = true;
 		plrs = new Shop(charName);
@@ -40,6 +42,7 @@ public class Event {
 	}
 
 	public void eventCalc() throws IOException {
+		player.setCHealth(player.getCHealth() + 5);
 		item = 0;
 		player.update();
 		e_calc = new Random();
@@ -112,7 +115,7 @@ public class Event {
 
 		case 6:
 			H.pln("You are in a castle.");
-			while(leave = false){
+			while(leave == false){
 				H.pln("You can:");
 				H.pln("(1) Fight Enemies, (2) Leave");
 				if(H.inputInt()==1){
@@ -132,14 +135,16 @@ public class Event {
 		case 7:
 			H.pln("You have entered a town");
 			plrs.shop();
+			player.update();
 			break;
 		case 8:
-			H.pln("YOU HACKER!");
-			H.pln("This type of land is not available yet!!!!");
+			H.pln("You have returned home!");
+			H.pln("You gained 20 health!");
+			player.setCHealth(player.getCHealth() + 20);
 			break;
 
 		case 9:
-			H.pln("You have found a mine!");
+			H.pln("You are in a mine.");
 			event = e_calc.nextInt(99) + 1;
 			if(event > 0 && event <= 15) {
 				H.pln("You found gold!");
@@ -168,8 +173,8 @@ public class Event {
 	}
 
 	public void showMap() {
-		if(player.hasMap()) {
-			location.showMap();
+		if(player.getMap() > 0) {
+			location.showMap(player.getMap());
 		} else {
 			H.pln("You do not have a map");
 		}
@@ -253,6 +258,7 @@ public class Event {
 			break;
 
 		}
+		item = 0;
 	}
 	public void craft() throws NumberFormatException, IOException {
 		craft.craft();
@@ -278,14 +284,22 @@ public class Event {
 			H.pln("iron - "+player.getIron());
 		if(player.getGold() > 0)
 			H.pln("gold - "+player.getGold());
+		if(player.getHPot() > 0)
+			H.pln("Health Potions - "+player.getHPot());
 		if(player.getAxe())
 			H.pln("axe");
 		if(player.getPick())
 			H.pln("pickaxe");
-		if(player.hasMap())
-			H.pln("map");
-		if(player.getWood() < 1 && player.getIron() < 1 && player.getGold() < 1 && player.getStone() < 1 && !player.getAxe() && !player.getPick() && !player.hasMap())
+		if(player.getMap() == 1)
+			H.pln("un-upgraded map");
+		if(player.getMap() == 2)
+			H.pln("upgraded map");
+		if(player.getWood() < 1 && player.getIron() < 1 && player.getGold() < 1 && player.getStone() < 1 && !player.getAxe() && !player.getPick() && player.getMap() == 0)
 			H.pln("You do not have anything in your inventory");
+	}
+	public void build() throws IOException {
+		location = build.build(location);
+		player.update();
 	}
 }
 

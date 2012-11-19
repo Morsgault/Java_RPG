@@ -1,6 +1,6 @@
 //Java_RPG
-//Alpha 1.3.0
-//Released 11/14/2012
+//Alpha Pre-Release 1.3.6
+//Released 11/19/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
 
@@ -55,7 +55,7 @@ public class Location {
 			else{
 				H.pln("You have reached the limits of the island");
 			}
-			
+
 			break;
 		case 3:
 			if(y<maxY){
@@ -90,18 +90,26 @@ public class Location {
 	/*
 	 * This method prints the map into the system output
 	 */
-	public void showMap() {
+	public void showMap(int map) {
 		for(int r = 0; r < mapSize; r++) {
 			String str = "";
 			for(int f = 0; f < mapSize; f++) {
-				str = str + world[r][f];
+				if(map == 2) {
+					if(r == y && f == x) {
+						str = str + "x";
+					} else {
+						str = str + world[r][f];
+					}
+				} else {
+					str = str + world[r][f];
+				}
 			}
 			System.out.println(str);
 		}
 	}
 
-	public void editMap(int editX, int editY, int worldType) throws IOException {
-		world[editX][editY] = worldType;
+	public void editMap(int worldType) throws IOException {
+		world[y][x] = worldType;
 		File edit = new File(playerName+".map");
 		edit.delete();
 		edit.createNewFile();
@@ -148,21 +156,19 @@ public class Location {
 					// Quicksand block 5% chance of generaton
 					if(randNum > 0 && randNum < 6) 
 						type = 1;
-					// forest block 60% chance of generaton
-					if(randNum > 5 && randNum < 56) 
+					// forest block 55% chance of generaton
+					if(randNum > 5 && randNum < 61) 
 						type = 2;
 					// pond block 10% chance of generation
 					if(randNum > 90 && randNum < 101) 
 						type = 3;
-					// field block 10% chance of generaton
+					// field block 25% chance of generaton
 					if(randNum > 65 && randNum < 91) 
 						type = 4;
 					//town block 5% chance of generation
 					if(randNum > 60 && randNum < 66) 
 						type = 7;
-					//mine block 5% chance of generation
-					if(randNum > 55 && randNum < 61) 
-						type = 9;
+					//mine block type 9 0% chance of generation built by player
 					//type 8 is a player built house 0% chance of generation
 					if(type == 0) {
 						System.out.println("Land Generator Error");
@@ -185,7 +191,7 @@ public class Location {
 
 			//set castle location
 			world[clx][cly] = 6;
-			
+
 			File newMap = new File(playerName+".map");
 			newMap.createNewFile();
 
