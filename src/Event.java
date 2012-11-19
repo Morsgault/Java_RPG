@@ -1,6 +1,6 @@
 //Java_RPG
-//Alpha Pre-Release 1.3.5
-//Released 11/14/2012
+//Alpha Pre-Release 1.3.6
+//Released 11/19/2012
 //©2012 Ryan Cicchiello & Jason Holman
 //See LICENCE for details
 
@@ -258,6 +258,7 @@ public class Event {
 			break;
 
 		}
+		item = 0;
 	}
 	public void craft() throws NumberFormatException, IOException {
 		craft.craft();
