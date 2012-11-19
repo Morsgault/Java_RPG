@@ -1,3 +1,8 @@
 #Vim's Temp Files
 .*.sw[a-z]
+*.plr
+*.inv
+*.map
+*.classpath
+*.project
 *~
