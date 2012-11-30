@@ -1,29 +1,24 @@
-//Java_RPG
-//Alpha Pre-Release 1.3.6
-//Released 11/19/2012
-//©2012 Ryan Cicchiello & Jason Holman
-//See LICENCE for details
-
-
 import java.io.IOException;
+import javax.swing.JOptionPane;
 
 public class TextAdventure {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
-
-		System.out.println("Please input you character's name.");
-		System.out.println("Note all of your data is saved using your character's name.");
-		String charName = H.inputString();
-		//	Character character = new Character(charName);
-		//	int mapSize = character.getMapSize();
-		//	Location location = new Location(mapSize, charName, character.getLocationX(), character.getLocationY());
-		Event event = new Event(charName); 
+		String charName = "";
+		charName = JOptionPane.showInputDialog("Please input you character's name.\nNote all of your data is saved using your character's name.");
+		if(charName.equals("")) {
+			System.out.println("Did not input the character's name program terminating");
+			System.exit(0);
+		}
+		H helper = new H();
+		helper.setCharName(charName);
+		Event event = new Event(charName);
 		H.pln("You find yourself on a deserted island. The last thing you remember is going to bed on in your cabin on your ship on route to Africa.");
-		H.pln("You have a dog named Tido following you for no apparent reason!");
+		H.pln("You have a dog named Tido following you for no apparent reason!"); //Spencer put this in. :)
 		while (true) {
 			while (event.isAlive()) {
 				event.eventCalc();
-				// System.out.println("The Current location is "+location.getX()+", "+location.getY());
+				// H.pln("The Current location is "+location.getX()+", "+location.getY());
 				boolean move = false;
 				while(move == false) {
 					String input2 = H.inputString();
@@ -85,6 +80,7 @@ public class TextAdventure {
 						H.pln("take - take any items that are at your current location");
 						H.pln("stats - show your stats");
 						H.pln("craft - show crafting menu");
+						H.pln("build - shows the building menu");
 						H.pln("inv - shows inventory");
 						H.pln("map - shows the map if the player has found one");
 						H.pln("save - saves all player stats");
@@ -126,10 +122,9 @@ public class TextAdventure {
 					} else if(input2.equals("build")){
 						event.build();
 					} else {
-						System.out.println("Improper Input");
+						H.pln("Improper Input");
 					}
 				}
-				//System.out.println("The Current location is "+location.getX()+", "+location.getY());
 
 			}
 			while(!event.isAlive()) {
@@ -141,9 +136,6 @@ public class TextAdventure {
 				} else H.pln("Impropper input");
 			}
 		}
-		//		if(location.isAlive() == false) {
-		//			System.out.println("You died");
-		//		}
 	}
 }
 

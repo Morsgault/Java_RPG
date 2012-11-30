@@ -1,9 +1,3 @@
-//Java_RPG
-//Alpha Pre-Release 1.3.6
-//Released 11/19/2012
-//©2012 Ryan Cicchiello & Jason Holman
-//See LICENCE for details
-
 import java.io.IOException;
 
 public class Shop {
@@ -18,6 +12,7 @@ public class Shop {
 
 	public void shop() throws IOException{
 		H.pln("Welcome to the Shop!");
+		leave = false;
 		while(!leave){
 			H.pln("Type the number next to the item to buy it.");
 			H.pln("1- Wood(4).....50");
