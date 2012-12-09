@@ -1,9 +1,3 @@
-//Java_RPG
-//Alpha Pre-Release 1.3.6
-//Released 11/19/2012
-//©2012 Ryan Cicchiello & Jason Holman
-//See LICENCE for details
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -58,8 +52,9 @@ public class Login{
 				H.pln("The minimum map size is 10");
 				H.pln("Your mapSize has been changed to 10");
 			}
-			System.out.println("No Character File Found");
-			System.out.println("Creating File");
+			H.pln("No Character File Found");
+			H.pln("Creating File");
+			H.pln("You find yourself on a deserted island. The last thing you remember is going to bed on in your cabin on your ship on route to Africa.");
 			File newChar = new File(charName+".plr");
 			newChar.createNewFile();
 
@@ -151,7 +146,7 @@ public class Login{
 	 * @param charName the name of the character to figure out if the file exists
 	 * @return
 	 */
-	public boolean Exists(String charName){
+	public static boolean Exists(String charName){
 		File f = new File(charName+".plr");
 		return f.exists();
 	}

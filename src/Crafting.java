@@ -1,10 +1,3 @@
-//Java_RPG
-//Alpha Pre-Release 1.3.6
-//Released 11/19/2012
-//©2012 Ryan Cicchiello & Jason Holman
-//See LICENCE for details
-
-
 import java.io.IOException;
 
 public class Crafting {

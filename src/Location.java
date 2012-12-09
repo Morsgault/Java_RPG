@@ -1,9 +1,3 @@
-//Java_RPG
-//Alpha Pre-Release 1.3.6
-//Released 11/19/2012
-//©2012 Ryan Cicchiello & Jason Holman
-//See LICENCE for details
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -104,7 +98,7 @@ public class Location {
 					str = str + world[r][f];
 				}
 			}
-			System.out.println(str);
+			H.pln(str);
 		}
 	}
 
@@ -171,8 +165,8 @@ public class Location {
 					//mine block type 9 0% chance of generation built by player
 					//type 8 is a player built house 0% chance of generation
 					if(type == 0) {
-						System.out.println("Land Generator Error");
-						System.out.println("Program Terminated");
+						H.pln("Land Generator Error");
+						H.pln("Program Terminated");
 						System.exit(0);
 					}
 					world[j][i] = type;

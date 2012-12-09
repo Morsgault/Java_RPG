@@ -1,10 +1,3 @@
-//Java_RPG
-//Alpha Pre-Release 1.3.6
-//Released 11/19/2012
-//©2012 Ryan Cicchiello & Jason Holman
-//See LICENCE for details
-
-
 import java.io.IOException;
 import java.util.Random;
 
@@ -233,7 +226,7 @@ public class Event {
 			}
 			break;
 		case 3:
-			int ironAmount = e_calc.nextInt(6) + 1;
+			int ironAmount = e_calc.nextInt(7) + 1;
 			if(player.getPick()) {
 				H.pln("You took "+ironAmount+" iron.");
 				player.setIron(ironAmount);
@@ -301,5 +294,6 @@ public class Event {
 		location = build.build(location);
 		player.update();
 	}
+	
 }
 
