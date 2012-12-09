@@ -19,7 +19,7 @@ public class AttackEngine {
 	private int P_HEALTH; //Player's Health
 	private int PC_HEALTH; //Player's Current Health
 	private final int P_MAX_DAMAGE[] = {40,50,60,70,80,90,100,110,120,130,140,150}; //Array of maximum damages for player
-	private final int E_MAX_DAMAGE[] = {5,20,30,40,50,60,70,80,90,100,110,120};
+	private final int E_MAX_DAMAGE[] = {5,15,20,30,35,50,55,65,70,75,80,85};
 	private int choice; //Holder variable for player input
 	private int damage;//The amount of damage done
 	private boolean flee; //Tells if a player flees
