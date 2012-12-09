@@ -1,0 +1,16 @@
+INDEX VERSION 1.126+/home/Jason/GitHub/Java_RPG/.metadata/.plugins/org.eclipse.jdt.core
+1146685649.index
+1175494123.index
+1955734927.index
+481213268.index
+3429456879.index
+4099177220.index
+2261860403.index
+900548665.index
+1532995404.index
+1250466463.index
+4010005932.index
+4123297280.index
+3505639603.index
+2611088766.index
+1293208710.index

@@ -18,6 +18,7 @@ public class Shop {
 
 	public void shop() throws IOException{
 		H.pln("Welcome to the Shop!");
+		leave = false;
 		while(!leave){
 			H.pln("Type the number next to the item to buy it.");
 			H.pln("1- Wood(4).....50");
