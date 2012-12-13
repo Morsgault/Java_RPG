@@ -5,4 +5,5 @@
 *.map
 *.classpath
 *.project
+*.class
 *~
